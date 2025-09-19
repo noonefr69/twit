@@ -19,10 +19,10 @@ const openSans = Open_Sans({
 
 export default async function Login() {
   const session = await auth();
-
   if (session) {
     redirect("/home");
   }
+  
   return (
     <div className="h-screen bg-black flex items-center justify-center max-w-[1440px] mx-auto">
       <div

@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <main className="bg-black h-screen">
-      <div className={`mx-auto max-w-[1240px]`}>{children}</div>
+      <div className={`mx-auto max-w-[1240px] grid grid-cols-12 gap-4`}>
+        <div className="grid col-span-3">
+          <Navbar />
+        </div>
+        <div className="col-span-9 grid">{children}</div>
+      </div>
     </main>
   );
 }

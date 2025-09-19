@@ -9,7 +9,7 @@ const newsreader = Newsreader({
 export default function Loading() {
   return (
     <div
-      className={`text-[7rem] animate-pulse font-semibold text-white h-screen flex items-center justify-center ${newsreader.className} antialiased`}
+      className={`text-[7rem] cursor-default animate-pulse font-semibold text-white h-screen flex items-center justify-center ${newsreader.className} antialiased`}
     >
       TWIT
     </div>

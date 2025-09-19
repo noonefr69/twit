@@ -6,13 +6,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function LilProfile() {
+  const session = await auth();
+  if (!session) redirect("/");
+
   const cookieHeader = (await headers()).get("cookie") || "";
 
   const res = await fetch("http://localhost:3000/api/users", {

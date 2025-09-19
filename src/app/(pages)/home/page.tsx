@@ -1,26 +1,45 @@
-import { auth, signOut } from "@/auth";
-import Navbar from "@/components/Navbar";
-import dbConnect from "@/lib/db";
-import User from "@/models/user";
+import { auth } from "@/auth";
+import AddPost from "@/components/AddPost";
+import Posts from "@/components/Posts";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Home() {
   const session = await auth();
-
-  await dbConnect();
-  const user = await User.findOne({ email: session?.user?.email });
-  if (!user) {
-    redirect("/");
-  }
+  if (!session) redirect("/");
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="grid col-span-3">
-        <Navbar />
+    <div className="text-white grid grid-cols-9">
+      <div className="col-span-6 border-x-2 border-x-[#252525]">
+        <Tabs defaultValue="forYou" className="w-full gap-0">
+          <TabsList className="w-full bg-black m-0 p-0 h-fit rounded-none ">
+            <TabsTrigger
+              className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
+              value="forYou"
+            >
+              For you
+            </TabsTrigger>
+            <TabsTrigger
+              className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
+              value="following"
+            >
+              Following
+            </TabsTrigger>
+          </TabsList>
+          <div className="">
+            <AddPost />
+            <TabsContent value="forYou">
+              <Posts />
+              <span className="text-muted-foreground">End Of the Road</span>
+            </TabsContent>
+            <TabsContent value="following">
+              Change your password here.
+            </TabsContent>
+          </div>
+        </Tabs>
       </div>
-      <div></div>
-      <div></div>
+      <div className="col-span-3">aas</div>
     </div>
   );
 }
