@@ -10,8 +10,8 @@ export default async function Home() {
   if (!session) redirect("/");
 
   return (
-    <div className="text-white grid grid-cols-9">
-      <div className="col-span-6 border-x-2 border-x-[#252525]">
+    <div className="text-white ">
+      <div className="min-h-screen border-x-2 border-x-[#252525]">
         <Tabs defaultValue="forYou" className="w-full gap-0">
           <TabsList className="w-full bg-black m-0 p-0 h-fit rounded-none ">
             <TabsTrigger
@@ -39,7 +39,6 @@ export default async function Home() {
           </div>
         </Tabs>
       </div>
-      <div className="col-span-3">aas</div>
     </div>
   );
 }

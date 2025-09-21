@@ -14,7 +14,24 @@ export type PostTypes = {
   _id: string;
   post: string;
   image: string;
-  likes: number;
+  likes: string[];
   comments: Comment[];
   createdAt: string;
 };
+
+export interface UserType {
+  _id: string;
+  name: string;
+  email: string;
+  image?: string;
+  cover?: string;
+  createdAt?: string;
+}
+
+export interface UserStore {
+  user: UserType | null;
+  loading: boolean;
+  error: string | null;
+  fetchUser: () => Promise<void>;
+  setUser: (user: UserType | null) => void;
+}

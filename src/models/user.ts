@@ -15,6 +15,16 @@ const userSchema = new Schema(
       required: false,
       default: "",
     },
+    cover: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    bio: {
+      type: String,
+      required: false,
+      default: "",
+    },
   },
   {
     timestamps: true,

@@ -16,14 +16,12 @@ const postSchema = new Schema(
       required: false,
       default: "",
     },
-    liked: {
-      type: Boolean,
-      default: false,
-    },
-    likes: {
-      type: Number,
-      default: 0,
-    },
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     comments: [
       {
         user: {

@@ -1,42 +1,33 @@
-import React from "react";
 import { headers } from "next/headers";
-import { PostTypes } from "@/types/type";
-import Image from "next/image";
-import { formatDistanceToNow } from "date-fns";
-import PostDropDown from "./PostDropDown";
 import PostFooter from "./PostFooter";
+import PostDropDown from "./PostDropDown";
+import Image from "next/image";
+import { PostTypes } from "@/types/type";
+import { formatDistanceToNow } from "date-fns";
 import { auth } from "@/auth";
 import User from "@/models/user";
 
-function timeAgo(dateString: string) {
+function timeAgo(dateString?: string) {
+  if (!dateString) return "";
   return formatDistanceToNow(new Date(dateString), { addSuffix: true });
 }
 
-export default async function Posts() {
-  const session = await auth();
-  const currentUser = await User.findOne({ email: session?.user?.email });
-
-  const cookieHeader = (await headers()).get("cookie") || "";
-
-  const postRes = await fetch("http://localhost:3000/api/posts", {
+export default async function ProfileFooterPosts() {
+  const res = await fetch("http://localhost:3000/api/post", {
     cache: "no-store",
     headers: {
-      cookie: cookieHeader,
+      cookie: (await headers()).get("cookie") || "",
     },
   });
-  if (!postRes.ok) {
-    throw new Error("Failed to fetch user");
-  }
-
-  const posts = await postRes.json();
+  const posts = await res.json();
 
   return (
-    <div className=" ">
+    <div>
       {posts.map((post: PostTypes) => {
         return (
           <div
             key={post._id}
-            className="p-5 relative border-b-2 border-b-[#252525]"
+            className="p-5 relative border-b-2 border-b-[#252525] text-white"
           >
             <div className="flex items-start justify-between min-w-0">
               <div className="flex items-start">
@@ -57,7 +48,7 @@ export default async function Posts() {
               </div>
               <PostDropDown />
             </div>
-            <pre className="mt-2 whitespace-pre-wrap break-all">
+            <pre className="my-7 whitespace-pre-wrap break-all">
               {post.post}
             </pre>
             <PostFooter post={post} />

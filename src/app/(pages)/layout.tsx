@@ -14,10 +14,11 @@ export default function RootLayout({
   return (
     <main className="bg-black h-screen">
       <div className={`mx-auto max-w-[1240px] grid grid-cols-12 gap-4`}>
-        <div className="grid col-span-3">
+        <div className="grid col-span-3 relative">
           <Navbar />
         </div>
-        <div className="col-span-9 grid">{children}</div>
+        <div className="col-span-6 grid">{children}</div>
+        <div className="grid col-span-3 text-white">Search</div>
       </div>
     </main>
   );

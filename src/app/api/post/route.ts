@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import dbConnect from "@/lib/db";
 import Post from "@/models/post";
+import User from "@/models/user";
+import { UserType } from "@/types/type";
 
 export async function GET() {
   try {
@@ -13,9 +15,18 @@ export async function GET() {
       });
     }
 
-    const posts = await Post.find({})
-      .populate("user", "name image") // only get the fields you need
+    const user = await User.findOne({
+      email: session.user.email,
+    }).lean<UserType>();
+    if (!user) {
+      return new Response(JSON.stringify({ error: "User not found" }), {
+        status: 404,
+      });
+    }
+
+    const posts = await Post.find({ user: user._id })
       .sort({ createdAt: -1 })
+      .populate("user", "name image")
       .lean();
 
     return new Response(JSON.stringify(posts), {
