@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Search from "@/components/Search";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +19,9 @@ export default function RootLayout({
           <Navbar />
         </div>
         <div className="col-span-6 grid">{children}</div>
-        <div className="grid col-span-3 text-white">Search</div>
+        <div className="grid col-span-3 text-white">
+          <Search />
+        </div>
       </div>
     </main>
   );
