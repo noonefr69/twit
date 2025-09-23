@@ -6,7 +6,7 @@ import { auth } from "@/auth";
 import User from "@/models/user";
 import { revalidatePath } from "next/cache";
 
-export async function toggleLike(postId: string) {
+export async function handleSave(postId: string) {
   await dbConnect();
 
   const session = await auth();
@@ -20,17 +20,15 @@ export async function toggleLike(postId: string) {
   const post = await Post.findById(postId);
   if (!post) throw new Error("Post not found");
 
-  const alreadySaved = user.savedPost.includes(postId);
+  const alreadySaved = user.savedPost.includes(post._id);
 
-  console.log(alreadySaved);
+  if (alreadySaved) {
+    user.savedPost.pull(post._id); // remove save
+  } else {
+    user.savedPost.push(post._id); // add save
+  }
 
-  //   if (alreadyLiked) {
-  //     post.likes.pull(user._id); // remove like
-  //   } else {
-  //     post.likes.push(user._id); // add like
-  //   }
-
-  //   await post.save();
+  await user.save();
 
   revalidatePath(`/home`);
 }

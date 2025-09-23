@@ -31,7 +31,7 @@ export default async function Home() {
             <AddPost />
             <TabsContent value="forYou">
               <Posts />
-              <span className="text-muted-foreground">End Of the Road</span>
+              <span className="text-muted-foreground text-center">End Of the Road</span>
             </TabsContent>
             <TabsContent value="following">
               Change your password here.

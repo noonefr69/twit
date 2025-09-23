@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileFooterPosts from "./ProfileFooterPosts";
 import ProfileFooterLikes from "./ProfileFooterLikes";
 import { headers } from "next/headers";
+import ProfileFooterSaves from "./ProfileFooterSaves";
 
 export default async function ProfileFooter() {
   const res = await fetch("http://localhost:3000/api/posts", {
@@ -41,7 +42,9 @@ export default async function ProfileFooter() {
         <TabsContent value="likes">
           <ProfileFooterLikes posts={posts} />
         </TabsContent>
-        <TabsContent value="saved">Change your password here.</TabsContent>
+        <TabsContent value="saved">
+          <ProfileFooterSaves posts={posts} />
+        </TabsContent>
       </div>
     </Tabs>
   );

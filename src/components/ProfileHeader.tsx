@@ -6,9 +6,15 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { BsCalendar2WeekFill } from "react-icons/bs";
 import { IoArrowBack } from "react-icons/io5";
+import { format } from "date-fns";
+
+function formatJoined(dateString: string) {
+  if (!dateString) return "";
+  return `Joined ${format(new Date(dateString), "MMMM yyyy")}`;
+}
 
 export default function ProfileHeader() {
-  const { user, error, loading, fetchUser } = useUserStore();
+  const { user, fetchUser } = useUserStore();
 
   useEffect(() => {
     fetchUser();
@@ -48,11 +54,9 @@ export default function ProfileHeader() {
             <h1 className="font-semibold">{user?.name}</h1>
             {/* <h1 className="font-semibold">{user?.email}</h1> */}
             <p>bio</p>
-            <div className="flex items-center gap-3 text-muted-foreground text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <BsCalendar2WeekFill />
-              <span>
-                {/* Joined {format(new Date(user?.createdAt), "MMMM yyyy")} */}
-              </span>
+              <span>{formatJoined("2025-09-19T21:20:52.196Z")}</span>
             </div>
             <div className="flex items-center gap-3 text-muted-foreground text-sm">
               <div>

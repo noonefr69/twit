@@ -1,20 +1,16 @@
 import { PostTypes } from "@/types/type";
-import { BsPin } from "react-icons/bs";
 import { FaComment } from "react-icons/fa";
 import ButtonLike from "./ButtonLike";
+import ButtonSave from "./ButtonSave";
 
 interface PostFooterProps {
   post: PostTypes;
 }
 
 export default function PostFooter({ post }: PostFooterProps) {
-
   return (
     <div className="mt-2 flex duration-300 items-center justify-between relative">
-      <ButtonLike
-        postId={post._id}
-        postLiked={post.likes}
-      />
+      <ButtonLike postId={post._id} postLiked={post.likes} />
       <button
         className="flex items-center  text-sm text-muted-foreground 
                 duration-300 group cursor-pointer absolute left-1/2 -translate-x-1/2"
@@ -24,12 +20,7 @@ export default function PostFooter({ post }: PostFooterProps) {
           {post.comments.length}
         </span>
       </button>
-      <button
-        className="flex items-center text-sm text-muted-foreground 
-                duration-300 group cursor-pointer"
-      >
-        <BsPin className="transition-all duration-300 group-hover:text-cyan-400 group-hover:bg-[#0063946e] p-[5px] rounded-full h-6 w-6" />
-      </button>
+      <ButtonSave postId={post._id} />
     </div>
   );
 }

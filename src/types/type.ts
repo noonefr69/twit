@@ -26,6 +26,7 @@ export interface UserType {
   image?: string;
   cover?: string;
   createdAt?: string;
+  savedPost?: string[];
 }
 
 export interface UserStore {

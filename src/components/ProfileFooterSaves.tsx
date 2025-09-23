@@ -1,56 +1,59 @@
-import { headers } from "next/headers";
+"use client";
+
+import { PostTypes } from "@/types/type";
+import { useUserStore } from "@/zustand/userStore";
 import PostFooter from "./PostFooter";
 import PostDropDown from "./PostDropDown";
 import Image from "next/image";
-import { PostTypes } from "@/types/type";
-import { formatDistanceToNow } from "date-fns";
 import { timeAgo } from "@/utils/timeChanger";
 
-export default async function ProfileFooterPosts() {
-  const res = await fetch("http://localhost:3000/api/post", {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
+type PostTypesProps = {
+  posts: PostTypes[];
+};
+
+export default function ProfileFooterSaves({ posts }: PostTypesProps) {
+  const { user } = useUserStore();
+
+  const savedPosts = posts.filter((post) => {
+    return user?.savedPost?.includes(post._id);
   });
-  const posts = await res.json();
 
   return (
-    <div>
-      {posts.length == 0 ? (
+    <div className="break-all">
+      {savedPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
-          You don't create any post!
+          You don't save any post!
         </div>
       ) : (
-        posts.map((post: PostTypes) => {
+        savedPosts.map((savedPost: PostTypes) => {
           return (
             <div
-              key={post._id}
+              key={savedPost._id}
               className="p-5 relative border-b-2 border-b-[#252525] text-white"
             >
               <div className="flex items-start justify-between min-w-0">
                 <div className="flex items-start">
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
-                      src={post?.user?.image}
-                      alt={post?.user?.image}
+                      src={savedPost?.user?.image}
+                      alt={savedPost?.user?.image}
                       fill
                       className="rounded-full"
                     />
                   </div>
                   <h1 className="font-semibold text-sm mx-2 truncate max-w-[120px]">
-                    {post?.user?.name}
+                    {savedPost?.user?.name}
                   </h1>
                   <span className="text-muted-foreground text-sm">
-                    {timeAgo(post?.createdAt)}
+                    {timeAgo(savedPost?.createdAt)}
                   </span>
                 </div>
-                <PostDropDown post={post} />
+                <PostDropDown post={savedPost} />
               </div>
               <pre className="my-7 whitespace-pre-wrap break-all">
-                {post.post}
+                {savedPost.post}
               </pre>
-              <PostFooter post={post} />
+              <PostFooter post={savedPost} />
             </div>
           );
         })

@@ -7,25 +7,16 @@ import PostDropDown from "./PostDropDown";
 import PostFooter from "./PostFooter";
 import { auth } from "@/auth";
 import User from "@/models/user";
-
-function timeAgo(dateString: string) {
-  return formatDistanceToNow(new Date(dateString), { addSuffix: true });
-}
+import { timeAgo } from "@/utils/timeChanger";
 
 export default async function Posts() {
-  const cookieHeader = (await headers()).get("cookie") || "";
-
-  const postRes = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("http://localhost:3000/api/posts", {
     cache: "no-store",
     headers: {
-      cookie: cookieHeader,
+      cookie: (await headers()).get("cookie") || "",
     },
   });
-  if (!postRes.ok) {
-    throw new Error("Failed to fetch user");
-  }
-
-  const posts = await postRes.json();
+  const posts = await res.json();
 
   return (
     <div className=" ">

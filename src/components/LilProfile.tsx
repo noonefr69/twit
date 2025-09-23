@@ -15,18 +15,12 @@ export default async function LilProfile() {
   const session = await auth();
   if (!session) redirect("/");
 
-  const cookieHeader = (await headers()).get("cookie") || "";
-
   const res = await fetch("http://localhost:3000/api/users", {
     cache: "no-store",
     headers: {
-      cookie: cookieHeader,
+      cookie: (await headers()).get("cookie") || "",
     },
   });
-  if (!res.ok) {
-    throw new Error("Failed to fetch user");
-  }
-
   const user = await res.json();
 
   return (
