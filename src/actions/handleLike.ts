@@ -31,5 +31,4 @@ export async function toggleLike(postId: string) {
   await post.save();
 
   revalidatePath(`/home`);
-  revalidatePath(`/profile`);
 }

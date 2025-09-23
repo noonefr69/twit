@@ -25,6 +25,12 @@ const userSchema = new Schema(
       required: false,
       default: "",
     },
+    savedPost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   {
     timestamps: true,

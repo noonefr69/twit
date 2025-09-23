@@ -121,3 +121,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* My Own Css */
+
+body {
+  overflow-y: scroll; /* always reserve scrollbar space */
+}

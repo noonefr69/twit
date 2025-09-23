@@ -4,8 +4,6 @@ import PostDropDown from "./PostDropDown";
 import Image from "next/image";
 import { PostTypes } from "@/types/type";
 import { formatDistanceToNow } from "date-fns";
-import { auth } from "@/auth";
-import User from "@/models/user";
 
 function timeAgo(dateString?: string) {
   if (!dateString) return "";
