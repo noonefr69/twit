@@ -50,7 +50,7 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
                       {timeAgo(likedPost?.createdAt)}
                     </span>
                   </div>
-                  <PostDropDown />
+                  <PostDropDown post={likedPost} />
                 </div>
                 <pre className="my-7 whitespace-pre-wrap break-all">
                   {likedPost.post}

@@ -44,7 +44,7 @@ export default async function ProfileFooterPosts() {
                   {timeAgo(post?.createdAt)}
                 </span>
               </div>
-              <PostDropDown />
+              <PostDropDown post={post} />
             </div>
             <pre className="my-7 whitespace-pre-wrap break-all">
               {post.post}

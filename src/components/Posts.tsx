@@ -13,9 +13,6 @@ function timeAgo(dateString: string) {
 }
 
 export default async function Posts() {
-  const session = await auth();
-  const currentUser = await User.findOne({ email: session?.user?.email });
-
   const cookieHeader = (await headers()).get("cookie") || "";
 
   const postRes = await fetch("http://localhost:3000/api/posts", {
@@ -55,7 +52,7 @@ export default async function Posts() {
                   {timeAgo(post?.createdAt)}
                 </span>
               </div>
-              <PostDropDown />
+              <PostDropDown post={post} />
             </div>
             <pre className="mt-2 whitespace-pre-wrap break-all">
               {post.post}
