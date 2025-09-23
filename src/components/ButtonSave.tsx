@@ -1,16 +1,18 @@
 "use client";
 
-import { toggleLike } from "@/actions/handleLike";
 import { handleSave } from "@/actions/handleSave";
 import { useUserStore } from "@/zustand/userStore";
 import { useTransition } from "react";
-import { BsPin } from "react-icons/bs";
+import { RiPushpin2Fill } from "react-icons/ri";
 
 type ButtonLikeProp = {
   postId: string;
+  p?: number;
+  w?: number;
+  label?: string;
 };
 
-export default function ButtonSave({ postId }: ButtonLikeProp) {
+export default function ButtonSave({ postId, p, label, w }: ButtonLikeProp) {
   const [isPending, startTransition] = useTransition();
   const { user, fetchUser } = useUserStore();
 
@@ -29,20 +31,21 @@ export default function ButtonSave({ postId }: ButtonLikeProp) {
     });
   }
 
-  console.log(alreadySaved);
-
   return (
     <button
       disabled={isPending}
       onClick={handleClick}
-      className="flex items-center text-sm 
-                duration-300 group cursor-pointer disabled:cursor-not-allowed"
+      style={{ width: `${w}%` }}
+      className="flex items-center
+                duration-300 group cursor-pointer disabled:cursor-not-allowed p-2 px-2 gap-2"
     >
-      <BsPin
-        className={`transition-all duration-300 group-hover:text-cyan-400 group-hover:bg-[#0063946e] p-[4px] rounded-full h-6 w-6 ${
+      <RiPushpin2Fill
+        style={{ padding: `${p}px` }}
+        className={`transition-all duration-300 group-hover:text-cyan-400 group-hover:bg-[#0063946e] rounded-full h-6 w-6 ${
           alreadySaved ? "text-cyan-400" : "text-muted-foreground "
         }`}
       />
+      {label}
     </button>
   );
 }

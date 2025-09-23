@@ -20,7 +20,7 @@ export default function PostFooter({ post }: PostFooterProps) {
           {post.comments.length}
         </span>
       </button>
-      <ButtonSave postId={post._id} />
+      <ButtonSave postId={post._id} p={5} />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { Newsreader } from "next/font/google";
 import { useUserStore } from "@/zustand/userStore";
 import { useEffect } from "react";
 import Link from "next/link";
+import ButtonAddPostFromNavbar from "./ButtonAddPostFromNavbar";
 
 const newsreader = Newsreader({
   variable: "--font-geist-sans",
@@ -54,6 +55,7 @@ export default function NavLinks() {
       >
         <BsPerson /> Profile
       </Link>
+      <ButtonAddPostFromNavbar />
     </div>
   );
 }
