@@ -29,14 +29,14 @@ export default function ButtonDelete({ postId }: ButtonDeleteProps) {
 
   return (
     <form
-      className="flex items-center gap-2 p-1 px-2 w-full cursor-pointer"
+      className="flex items-center gap-2 cursor-pointer group"
       action={handleChange}
     >
       <button
         type="submit"
-        className="flex items-center gap-2 cursor-pointer w-full"
+        className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer px-2 py-1 w-full"
       >
-        <FaRegTrashAlt size={20}/>
+        <FaRegTrashAlt size={20} />
         Delete
       </button>
     </form>

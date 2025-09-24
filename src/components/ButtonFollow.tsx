@@ -1,7 +1,5 @@
 "use client";
 
-import { BsPersonFillCheck } from "react-icons/bs";
-import { BsPersonFillAdd } from "react-icons/bs";
 import { handleFollow } from "@/actions/handleFollow";
 import { useTransition } from "react";
 import { useUserStore } from "@/zustand/userStore";

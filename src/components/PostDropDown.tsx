@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PostTypes } from "@/types/type";
 import { useUserStore } from "@/zustand/userStore";
-import { MdReport } from "react-icons/md";
 import { RxDotsHorizontal } from "react-icons/rx";
 import ButtonDelete from "./ButtonDelete";
 import ButtonSave from "./ButtonSave";
 import ButtonFollow from "./ButtonFollow";
+import ButtonReport from "./ButtonReport";
 
 type PostTypesProps = {
   post: PostTypes;
@@ -34,21 +34,28 @@ export default function PostDropDown({ post }: PostTypesProps) {
             userItSelf ? "hidden" : "flex"
           }`}
         >
+          {/* Follow Button */}
           <ButtonFollow userId={post.user._id} />
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0`}
         >
+          {/* Save Button */}
           <ButtonSave postId={post._id} label={`Save`} w={100} />
         </DropdownMenuItem>
-        <DropdownMenuItem className="focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none">
-          <MdReport size={20} /> Report
+        <DropdownMenuItem
+          onSelect={(e) => e.preventDefault()}
+          className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0`}
+        >
+          {/* Report Button */}
+          <ButtonReport postId={post._id} />
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0 ${
             userItSelf ? "block" : "hidden"
           }`}
         >
+          {/* Delete Button */}
           <ButtonDelete postId={post._id} />
         </DropdownMenuItem>
       </DropdownMenuContent>

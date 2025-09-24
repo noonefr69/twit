@@ -21,7 +21,6 @@ export async function handleFollow(userId: string) {
   }
 
   const targetUser = await User.findById(userId);
-  console.log(targetUser, user);
 
   const alreadyFollow = user.following.includes(userId);
 
