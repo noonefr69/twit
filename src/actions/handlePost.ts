@@ -26,4 +26,5 @@ export async function handlePost(formData: FormData) {
   });
 
   revalidatePath("/home");
+  revalidatePath("/saved");
 }

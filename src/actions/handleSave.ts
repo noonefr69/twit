@@ -31,4 +31,5 @@ export async function handleSave(postId: string) {
   await user.save();
 
   revalidatePath(`/home`);
+  revalidatePath("/saved");
 }

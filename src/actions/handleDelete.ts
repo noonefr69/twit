@@ -27,4 +27,5 @@ export async function handleDelete(postId: string) {
   await Post.findByIdAndDelete(postId);
 
   revalidatePath("/home");
+  revalidatePath("/saved");
 }
