@@ -24,6 +24,8 @@ export const useUserStore = create<UserStore>((set) => ({
         cover: data.cover,
         bio: data.bio,
         savedPost: data.savedPost,
+        following: data.following,
+        followers: data.followers,
         createdAt: data.createdAt,
       };
 

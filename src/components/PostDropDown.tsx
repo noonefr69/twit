@@ -10,9 +10,9 @@ import { PostTypes } from "@/types/type";
 import { useUserStore } from "@/zustand/userStore";
 import { MdReport } from "react-icons/md";
 import { RxDotsHorizontal } from "react-icons/rx";
-import { TiUserAddOutline } from "react-icons/ti";
 import ButtonDelete from "./ButtonDelete";
 import ButtonSave from "./ButtonSave";
+import ButtonFollow from "./ButtonFollow";
 
 type PostTypesProps = {
   post: PostTypes;
@@ -30,11 +30,11 @@ export default function PostDropDown({ post }: PostTypesProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-black p-0 m-0 absolute w-44 py-3 -left-40 shadow-sm text-white border-2 border-[#252525] font-semibold">
         <DropdownMenuItem
-          className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none ${
+          className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0 ${
             userItSelf ? "hidden" : "flex"
           }`}
         >
-          <TiUserAddOutline size={20} /> Follow
+          <ButtonFollow userId={post.user._id} />
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0`}

@@ -25,6 +25,16 @@ const userSchema = new Schema(
       required: false,
       default: "",
     },
+    followers: [
+      {
+        type: String,
+      },
+    ],
+    following: [
+      {
+        type: String,
+      },
+    ],
     savedPost: [
       {
         type: Schema.Types.ObjectId,

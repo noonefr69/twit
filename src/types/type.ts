@@ -25,6 +25,8 @@ export interface UserType {
   email?: string;
   image?: string;
   cover?: string;
+  following?: string;
+  follower?: string;
   createdAt?: string;
   savedPost?: string[];
 }

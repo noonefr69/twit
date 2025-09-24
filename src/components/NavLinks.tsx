@@ -25,8 +25,6 @@ export default function NavLinks() {
   const { user, fetchUser } = useUserStore();
   const pathName = decodeURIComponent(usePathname());
 
-  console.log(pathName);
-
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);

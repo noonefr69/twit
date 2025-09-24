@@ -32,20 +32,24 @@ export default function ButtonSave({ postId, p, label, w }: ButtonLikeProp) {
   }
 
   return (
-    <button
-      disabled={isPending}
-      onClick={handleClick}
+    <form
       style={{ width: `${w}%` }}
-      className="flex items-center
-                duration-300 group cursor-pointer disabled:cursor-not-allowed p-2 px-2 gap-2"
+      className="flex items-center gap-2 cursor-pointer group"
+      action={handleClick}
     >
-      <RiPushpin2Fill
-        style={{ padding: `${p}px` }}
-        className={`transition-all duration-300 group-hover:text-cyan-400 group-hover:bg-[#0063946e] rounded-full h-6 w-6 ${
-          alreadySaved ? "text-cyan-400" : "text-muted-foreground "
-        }`}
-      />
-      {label}
-    </button>
+      <button
+        disabled={isPending}
+        type="submit"
+        className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer px-2 py-1 w-full"
+      >
+        <RiPushpin2Fill
+          style={{ padding: `${p}px` }}
+          className={`transition-all duration-300 group-hover:text-cyan-400 group-hover:bg-[#0063946e] rounded-full h-6 w-6 ${
+            alreadySaved ? "text-cyan-400" : "text-muted-foreground "
+          }`}
+        />{" "}
+        {label}
+      </button>
+    </form>
   );
 }
