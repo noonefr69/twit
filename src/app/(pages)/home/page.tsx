@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <div className="text-white ">
-      <div className="min-h-screen border-x-2 border-x-[#252525]">
+      <div className="">
         <Tabs defaultValue="forYou" className="w-full gap-0">
           <TabsList className="w-full bg-black m-0 p-0 h-fit rounded-none ">
             <TabsTrigger
@@ -31,7 +31,9 @@ export default async function Home() {
             <AddPost />
             <TabsContent value="forYou">
               <Posts />
-              <span className="text-muted-foreground text-center w-full flex items-center justify-center mt-4">End of the road</span>
+              <span className="text-muted-foreground text-center w-full flex items-center justify-center my-4">
+                End of the road
+              </span>
             </TabsContent>
             <TabsContent value="following">
               Change your password here.

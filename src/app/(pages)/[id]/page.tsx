@@ -23,7 +23,7 @@ export default async function Page({
   const posts = await postRes.json();
 
   return (
-    <div className="border-x-2 border-x-[#252525]">
+    <div className="">
       <ProfileHeader />
       <ProfileFooter />
     </div>

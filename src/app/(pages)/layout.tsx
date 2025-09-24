@@ -18,7 +18,9 @@ export default function RootLayout({
         <div className="grid col-span-3 relative">
           <Navbar />
         </div>
-        <div className="col-span-6 grid">{children}</div>
+        <div className="col-span-6 grid border-x-2 border-x-[#252525] min-h-screen">
+          {children}
+        </div>
         <div className="grid col-span-3 text-white">
           <Search />
         </div>

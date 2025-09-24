@@ -13,7 +13,6 @@ type ButtonLikeProp = {
 export default function ButtonLike({ postId, postLiked }: ButtonLikeProp) {
   const [isPending, startTransition] = useTransition();
   const { user } = useUserStore();
-
   const alreadyLiked = user?._id ? postLiked.includes(user._id) : false;
 
   function handleClick() {

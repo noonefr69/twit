@@ -21,7 +21,7 @@ export default function ButtonDelete({ postId }: ButtonDeleteProps) {
           console.log(err.message);
           //   toast.error(err.message);
         } else {
-          console.log("Something went wrong");
+          console.error("Something went wrong");
         }
       }
     });

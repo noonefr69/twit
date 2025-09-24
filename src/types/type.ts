@@ -22,7 +22,7 @@ export type PostTypes = {
 export interface UserType {
   _id: string;
   name: string;
-  email: string;
+  email?: string;
   image?: string;
   cover?: string;
   createdAt?: string;

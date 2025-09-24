@@ -1,4 +1,4 @@
-"use client"; // Error boundaries must be Client Components
+"use client";
 
 import { useEffect } from "react";
 import { AlertTriangle, RotateCcw } from "lucide-react";
@@ -12,7 +12,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error); // Log error
+    console.error(error); 
   }, [error]);
 
   return (

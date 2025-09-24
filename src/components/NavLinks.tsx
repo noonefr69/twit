@@ -9,6 +9,7 @@ import { useUserStore } from "@/zustand/userStore";
 import { useEffect } from "react";
 import Link from "next/link";
 import ButtonAddPostFromNavbar from "./ButtonAddPostFromNavbar";
+import { RiPushpin2Fill } from "react-icons/ri";
 
 const newsreader = Newsreader({
   variable: "--font-geist-sans",
@@ -48,6 +49,12 @@ export default function NavLinks() {
         href={`/notifications`}
       >
         <IoMdNotificationsOutline /> Notifications
+      </Link>
+      <Link
+        className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}
+        href={`/notifications`}
+      >
+        <RiPushpin2Fill /> Saved
       </Link>
       <Link
         className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}

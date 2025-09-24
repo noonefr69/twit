@@ -40,7 +40,7 @@ export default function AddPost() {
         tsetTextAreaLenght(0);
         setTextAreaInput(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     });
   }

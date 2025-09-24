@@ -52,7 +52,7 @@ export default function ButtonAddPostFromNavbar() {
 
         setOpen(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     });
   }
@@ -62,7 +62,7 @@ export default function ButtonAddPostFromNavbar() {
       <DialogTrigger className="bg-white mt-2 text-black cursor-pointer rounded-full w-full py-3 duration-300 hover:opacity-70 font-bold text-lg">
         Post
       </DialogTrigger>
-      <DialogContent className="bg-black h-64 flex flex-col justify-center">
+      <DialogContent className="bg-black h-64 flex flex-col justify-center border-2 border-[#252525]">
         <DialogHeader>
           <DialogTitle className="text-white mb-5 mt-2 flex items-center justify-between">
             Add new post
@@ -80,7 +80,7 @@ export default function ButtonAddPostFromNavbar() {
                 />
                 <div className="space-x-4 flex items-end">
                   <span
-                    className={`duration-500 text-red-500 absolute left-0 px-10 ${
+                    className={`duration-500 text-red-500 absolute left-0 ${
                       err ? "opacity-100 bottom-4" : "opacity-0 bottom-5"
                     }`}
                   >

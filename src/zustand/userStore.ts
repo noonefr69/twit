@@ -16,7 +16,18 @@ export const useUserStore = create<UserStore>((set) => ({
       }); // 👈 your API route
       if (!res.ok) throw new Error("Failed to fetch user");
       const data = await res.json();
-      set({ user: data, loading: false });
+
+      const safeUser = {
+        _id: data._id,
+        name: data.name,
+        image: data.image,
+        cover: data.cover,
+        bio: data.bio,
+        savedPost: data.savedPost,
+        createdAt: data.createdAt,
+      };
+
+      set({ user: safeUser, loading: false });
     } catch (err: any) {
       set({ error: err.message, loading: false });
     }
