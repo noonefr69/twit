@@ -1,13 +1,23 @@
 import { auth } from "@/auth";
 import AddPost from "@/components/AddPost";
 import Posts from "@/components/Posts";
+import PostsFollowing from "@/components/PostsFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Home() {
   const session = await auth();
   if (!session) redirect("/");
+
+  const res = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+    headers: {
+      cookie: (await headers()).get("cookie") || "",
+    },
+  });
+  const posts = await res.json();
 
   return (
     <div className="text-white ">
@@ -30,13 +40,13 @@ export default async function Home() {
           <div className="">
             <AddPost />
             <TabsContent value="forYou">
-              <Posts />
+              <Posts posts={posts} />
               <span className="text-muted-foreground text-center w-full flex items-center justify-center my-4">
                 End of the road
               </span>
             </TabsContent>
             <TabsContent value="following">
-              Change your password here.
+              <PostsFollowing posts={posts} />
             </TabsContent>
           </div>
         </Tabs>

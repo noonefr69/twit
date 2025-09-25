@@ -1,36 +1,37 @@
-import PostFooter from "./PostFooter";
-import PostDropDown from "./PostDropDown";
+"use client";
+
+import React from "react";
+import { PostTypes } from "@/types/type";
 import Image from "next/image";
-import { PostTypes, UserType } from "@/types/type";
-import { formatDistanceToNow } from "date-fns";
+import PostDropDown from "./PostDropDown";
+import PostFooter from "./PostFooter";
 import { timeAgo } from "@/utils/timeChanger";
+import { useUserStore } from "@/zustand/userStore";
 import Link from "next/link";
 
-type ProfileFooterPostsProps = {
-  dynamicUser: UserType;
+type PostsProps = {
   posts: PostTypes[];
 };
 
-export default function ProfileFooterPosts({
-  dynamicUser,
-  posts,
-}: ProfileFooterPostsProps) {
-  const userItSelfPosts = posts.filter((post) => {
-    return post.user._id == dynamicUser._id;
+export default function PostsFollowing({ posts }: PostsProps) {
+  const { user } = useUserStore();
+
+  const postFollowings = posts.filter((post) => {
+    return user?.following?.includes(post.user._id);
   });
 
   return (
-    <div>
-      {userItSelfPosts.length == 0 ? (
-        <div className="text-muted-foreground font-semibold text-center mt-4">
-          You don't create any post!
+    <div className=" ">
+      {postFollowings.length == 0 ? (
+        <div className="text-muted-foreground text-center mt-7 text-lg font-semibold">
+          Follow others to see their posts.{" "}
         </div>
       ) : (
-        userItSelfPosts.map((post: PostTypes) => {
+        postFollowings.map((post: PostTypes) => {
           return (
             <div
               key={post._id}
-              className="p-5 relative border-b-2 border-b-[#252525] text-white"
+              className="p-5 relative border-b-2 border-b-[#252525]"
             >
               <div className="flex items-start justify-between min-w-0">
                 <Link href={`/${post.user._id}`} className="flex items-start group">
@@ -51,7 +52,7 @@ export default function ProfileFooterPosts({
                 </Link>
                 <PostDropDown post={post} />
               </div>
-              <pre className="my-7 whitespace-pre-wrap break-all">
+              <pre className="mt-2 whitespace-pre-wrap break-all">
                 {post.post}
               </pre>
               <PostFooter post={post} />

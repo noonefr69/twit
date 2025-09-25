@@ -15,6 +15,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTransition } from "react";
+import { handleFollow } from "@/actions/handleFollow";
+import { TbLoaderQuarter } from "react-icons/tb";
 
 function formatJoined(dateString: string) {
   if (!dateString) return "";
@@ -30,7 +33,26 @@ export default function ProfileHeader({
   dynamicUser,
   posts,
 }: ProfileHeaderProps) {
-  const { user } = useUserStore();
+  const { user, fetchUser } = useUserStore();
+  const [isPending, startTransition] = useTransition();
+
+  function handleChange() {
+    startTransition(async () => {
+      try {
+        await handleFollow(dynamicUser?._id);
+        await fetchUser();
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.log(err.message);
+          //   toast.error(err.message);
+        } else {
+          console.error("Something went wrong");
+        }
+      }
+    });
+  }
+
+  const alreadyFollowed = user?.following?.includes(dynamicUser._id);
 
   const userItSelfPosts = posts.filter((post) => {
     return post.user._id == dynamicUser._id;
@@ -47,7 +69,9 @@ export default function ProfileHeader({
           </Link>
           <h1 className="font-semibold text-sm">{dynamicUser?.name}</h1>
         </div>
-        <span className="text-muted-foreground text-sm">{userItSelfPosts.length} posts</span>
+        <span className="text-muted-foreground text-sm">
+          {userItSelfPosts.length} posts
+        </span>
       </nav>
 
       <div className="relative bg-[#252525] w-full h-48">
@@ -77,7 +101,7 @@ export default function ProfileHeader({
             <p>{dynamicUser.bio ? dynamicUser.bio : "Enter Bio"}</p>
             <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <BsCalendar2WeekFill />
-              <span>{formatJoined("2025-09-19T21:20:52.196Z")}</span>
+              <span>{formatJoined(dynamicUser?.createdAt!)}</span>
             </div>
             <div className="flex items-center gap-3 text-muted-foreground text-sm">
               <div>
@@ -111,7 +135,20 @@ export default function ProfileHeader({
             </DialogContent>
           </Dialog>
         ) : (
-          ""
+          <form action={handleChange}>
+            <button
+              className="text-white transition-all cursor-pointer rounded-full font-semibold border-2 px-3 duration-300 hover:bg-[#252525] py-1 border-[#ababab]"
+              type="submit"
+            >
+              {isPending ? (
+                <TbLoaderQuarter className="animate-spin" size={24} />
+              ) : alreadyFollowed ? (
+                "Unfollow"
+              ) : (
+                "Follow"
+              )}
+            </button>
+          </form>
         )}
       </div>
     </div>

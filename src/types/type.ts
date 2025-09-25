@@ -16,7 +16,7 @@ export type PostTypes = {
   image: string;
   likes: string[];
   comments: Comment[];
-  createdAt: string;
+  createdAt?: string;
 };
 
 export interface UserType {
