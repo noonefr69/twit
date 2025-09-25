@@ -8,24 +8,38 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const cookieHeader = (await headers()).get("cookie") || "";
 
-  const postRes = await fetch("http://localhost:3000/api/posts", {
+  // userDynamic Data
+  const userRes = await fetch(`http://localhost:3000/api/users/${id}`, {
     cache: "no-store",
     headers: {
-      cookie: cookieHeader,
+      cookie: (await headers()).get("cookie") || "",
     },
   });
-  if (!postRes.ok) {
-    throw new Error("Failed to fetch user");
-  }
+  const user = await userRes.json();
 
-  const posts = await postRes.json();
+  // All Posts
+  const postsRes = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+    headers: {
+      cookie: (await headers()).get("cookie") || "",
+    },
+  });
+  const posts = await postsRes.json();
+
+  // user post
+  const postRes = await fetch(`http://localhost:3000/api/post`, {
+    cache: "no-store",
+    headers: {
+      cookie: (await headers()).get("cookie") || "",
+    },
+  });
+  const post = await postRes.json();
 
   return (
     <div className="">
-      <ProfileHeader />
-      <ProfileFooter />
+      <ProfileHeader dynamicUser={user} posts={posts} />
+      <ProfileFooter dynamicUser={user} posts={posts} />
     </div>
   );
 }

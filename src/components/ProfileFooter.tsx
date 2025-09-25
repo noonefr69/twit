@@ -1,17 +1,24 @@
+"use client";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileFooterPosts from "./ProfileFooterPosts";
 import ProfileFooterLikes from "./ProfileFooterLikes";
-import { headers } from "next/headers";
 import ProfileFooterSaves from "./ProfileFooterSaves";
+import { PostTypes, UserType } from "@/types/type";
+import { useUserStore } from "@/zustand/userStore";
 
-export default async function ProfileFooter() {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
-  });
-  const posts = await res.json();
+type ProfileFooterProps = {
+  dynamicUser: UserType;
+  posts: PostTypes[];
+};
+
+export default function ProfileFooter({
+  dynamicUser,
+  posts,
+}: ProfileFooterProps) {
+  const { user } = useUserStore();
+
+  const userItSelf = user?._id == dynamicUser._id;
 
   return (
     <Tabs defaultValue="posts" className="w-full gap-0 relative -top-[90px]">
@@ -22,22 +29,30 @@ export default async function ProfileFooter() {
         >
           Posts
         </TabsTrigger>
-        <TabsTrigger
-          className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
-          value="likes"
-        >
-          Likes
-        </TabsTrigger>
-        <TabsTrigger
-          className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
-          value="saved"
-        >
-          Saved
-        </TabsTrigger>
+        {userItSelf ? (
+          <TabsTrigger
+            className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
+            value="likes"
+          >
+            Likes
+          </TabsTrigger>
+        ) : (
+          ""
+        )}
+        {userItSelf ? (
+          <TabsTrigger
+            className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
+            value="saved"
+          >
+            Saved
+          </TabsTrigger>
+        ) : (
+          ""
+        )}
       </TabsList>
       <div className="">
         <TabsContent value="posts">
-          <ProfileFooterPosts />{" "}
+          <ProfileFooterPosts dynamicUser={dynamicUser} posts={posts} />
         </TabsContent>
         <TabsContent value="likes">
           <ProfileFooterLikes posts={posts} />

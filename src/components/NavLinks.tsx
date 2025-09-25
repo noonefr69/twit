@@ -116,18 +116,18 @@ export default function NavLinks() {
       </Link>
       <Link
         className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}
-        href={`/${user?.name}`}
+        href={`/${user?._id}`}
       >
         <span
           className={`items-center flex gap-2 ${
-            pathName == `/${user?.name}` ? "hidden" : "flex"
+            pathName == `/${user?._id}` ? "hidden" : "flex"
           }`}
         >
           <BsPerson /> Profile
         </span>
         <span
           className={`items-center font-bold gap-2 ${
-            pathName == `/${user?.name}` ? "flex" : "hidden"
+            pathName == `/${user?._id}` ? "flex" : "hidden"
           }`}
         >
           <MdPerson /> Profile

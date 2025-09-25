@@ -1,28 +1,31 @@
-import { headers } from "next/headers";
 import PostFooter from "./PostFooter";
 import PostDropDown from "./PostDropDown";
 import Image from "next/image";
-import { PostTypes } from "@/types/type";
+import { PostTypes, UserType } from "@/types/type";
 import { formatDistanceToNow } from "date-fns";
 import { timeAgo } from "@/utils/timeChanger";
 
-export default async function ProfileFooterPosts() {
-  const res = await fetch("http://localhost:3000/api/post", {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
+type ProfileFooterPostsProps = {
+  dynamicUser: UserType;
+  posts: PostTypes[];
+};
+
+export default function ProfileFooterPosts({
+  dynamicUser,
+  posts,
+}: ProfileFooterPostsProps) {
+  const userItSelfPosts = posts.filter((post) => {
+    return post.user._id == dynamicUser._id;
   });
-  const posts = await res.json();
 
   return (
     <div>
-      {posts.length == 0 ? (
+      {userItSelfPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
           You don't create any post!
         </div>
       ) : (
-        posts.map((post: PostTypes) => {
+        userItSelfPosts.map((post: PostTypes) => {
           return (
             <div
               key={post._id}

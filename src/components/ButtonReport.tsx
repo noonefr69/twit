@@ -60,7 +60,7 @@ export default function ButtonReport({ postId }: Props) {
       <DialogTrigger className="flex items-center px-2 gap-2 py-1 cursor-pointer w-full">
         <MdReport /> Report
       </DialogTrigger>
-      <DialogContent className="bg-black flex flex-col min-h-64 max-h-[50rem] overflow-y-scroll py-10 justify-center border-2 border-[#252525]">
+      <DialogContent className="bg-black flex flex-col min-h-64 max-h-[50rem] overflow-y-auto py-10 justify-center border-2 border-[#252525]">
         <DialogHeader>
           <DialogTitle className="text-white flex mb-4 items-center justify-between">
             Why are you reporting this post?

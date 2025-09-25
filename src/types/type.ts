@@ -21,12 +21,13 @@ export type PostTypes = {
 
 export interface UserType {
   _id: string;
+  bio: string;
   name: string;
   email?: string;
   image?: string;
   cover?: string;
   following?: string;
-  follower?: string;
+  followers?: string;
   createdAt?: string;
   savedPost?: string[];
 }

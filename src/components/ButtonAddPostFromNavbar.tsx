@@ -61,7 +61,7 @@ export default function ButtonAddPostFromNavbar() {
       <DialogTrigger className="bg-white mt-2 text-black cursor-pointer rounded-full w-full py-3 duration-300 hover:opacity-70 font-bold text-lg">
         Post
       </DialogTrigger>
-      <DialogContent className="bg-black min-h-64 max-h-[50rem] overflow-y-scroll flex flex-col justify-center border-2 border-[#252525]">
+      <DialogContent className="bg-black min-h-64 max-h-[50rem] overflow-y-auto flex flex-col justify-center border-2 border-[#252525]">
         <DialogHeader>
           <DialogTitle className="text-white mb-5 mt-2 flex items-center justify-between">
             Add new post
