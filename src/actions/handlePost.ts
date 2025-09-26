@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@/auth";
+import cloudinary from "@/lib/cloudinary";
 import dbConnect from "@/lib/db";
 import Post from "@/models/post";
 import User from "@/models/user";
@@ -13,16 +14,42 @@ export async function handlePost(formData: FormData) {
   await dbConnect();
 
   const post = formData.get("post");
-  if (!post || typeof post !== "string" || post.trim() == "") {
+  const image = formData.get("image") as File | null;
+
+  if (!post || typeof post !== "string" || post.trim() === "") {
     throw new Error("Invalid post content");
   }
 
   const user = await User.findOne({ email: session.user.email });
   if (!user) throw new Error("User not found");
 
+  let imageUrl = "";
+
+  // ✅ Upload only if image exists
+  if (image && image.size > 0) {
+    const arrayBuffer = await image.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+
+    const result: any = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({}, (error, result) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve(result);
+        })
+        .end(buffer);
+    });
+
+    imageUrl = result.secure_url; // save cloudinary url
+  }
+
+  // ✅ Save post with/without image
   await Post.create({
     post,
     user: user._id,
+    image: imageUrl,
   });
 
   revalidatePath("/home");

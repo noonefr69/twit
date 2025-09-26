@@ -79,7 +79,7 @@ export default function ButtonReport({ postId }: Props) {
                 onInput={handleTextArea}
                 className="w-full whitespace-pre-wrap duration-300 resize-none overflow-hidden outline-none border-y-2 border-y-[#252525] py-3 font-semibold text-lg bg-transparent text-white"
                 required
-                placeholder="What's happening?"
+                placeholder="Reason for reporting"
                 name="report"
               />
               <div className="space-x-4 flex items-end">
