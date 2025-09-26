@@ -7,17 +7,10 @@ import { BsCalendar2WeekFill } from "react-icons/bs";
 import { IoArrowBack } from "react-icons/io5";
 import { format } from "date-fns";
 import { PostTypes, UserType } from "@/types/type";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useTransition } from "react";
 import { handleFollow } from "@/actions/handleFollow";
 import { TbLoaderQuarter } from "react-icons/tb";
+import ProfileEdit from "./ProfileEdit";
 
 function formatJoined(dateString: string) {
   if (!dateString) return "";
@@ -98,7 +91,7 @@ export default function ProfileHeader({
           </div>
           <div className="mt-5 space-y-2">
             <h1 className="font-semibold">{dynamicUser?.name}</h1>
-            <p>{dynamicUser.bio ? dynamicUser.bio : "Enter Bio"}</p>
+            <pre>{dynamicUser.bio ? dynamicUser.bio : ""}</pre>
             <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <BsCalendar2WeekFill />
               <span>{formatJoined(dynamicUser?.createdAt!)}</span>
@@ -120,24 +113,12 @@ export default function ProfileHeader({
           </div>
         </div>
         {userItSelf ? (
-          <Dialog>
-            <DialogTrigger className="text-white cursor-pointer rounded-full font-semibold border-2 px-3 duration-300 hover:bg-[#252525] py-1 border-[#ababab]">
-              Edit Profile
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+          <ProfileEdit userData={dynamicUser} />
         ) : (
           <form action={handleChange}>
             <button
-              className="text-white transition-all cursor-pointer rounded-full font-semibold border-2 px-3 duration-300 hover:bg-[#252525] py-1 border-[#ababab]"
+              disabled={isPending}
+              className="text-white disabled:cursor-not-allowed transition-all cursor-pointer text-center flex items-center justify-center rounded-full font-semibold border-2 w-36 duration-300 hover:bg-[#252525] py-1 border-[#ababab]"
               type="submit"
             >
               {isPending ? (

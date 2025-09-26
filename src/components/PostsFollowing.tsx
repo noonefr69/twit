@@ -34,7 +34,10 @@ export default function PostsFollowing({ posts }: PostsProps) {
               className="p-5 relative border-b-2 border-b-[#252525]"
             >
               <div className="flex items-start justify-between min-w-0">
-                <Link href={`/${post.user._id}`} className="flex items-start group">
+                <Link
+                  href={`/${post.user._id}`}
+                  className="flex items-start group"
+                >
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
                       src={post?.user?.image}
@@ -55,6 +58,18 @@ export default function PostsFollowing({ posts }: PostsProps) {
               <pre className="mt-2 whitespace-pre-wrap break-all">
                 {post.post}
               </pre>
+              {post.image ? (
+                <div className="relative h-96 w-full rounded-md mt-4 bg-[#252525]">
+                  <Image
+                    src={post.image}
+                    alt={post.image}
+                    fill
+                    className="rounded-md"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               <PostFooter post={post} />
             </div>
           );

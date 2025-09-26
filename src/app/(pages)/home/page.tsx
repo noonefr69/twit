@@ -23,7 +23,7 @@ export default async function Home() {
     <div className="text-white ">
       <div className="">
         <Tabs defaultValue="forYou" className="w-full gap-0">
-          <TabsList className="w-full bg-black m-0 p-0 h-fit rounded-none ">
+          <TabsList className="w-full bg-[#000000e0] m-0 p-0 h-fit rounded-none sticky top-0 z-30">
             <TabsTrigger
               className="cursor-pointer transition-all duration-300 py-4 data-[state=active]:hover:bg-[#252525] hover:bg-[#252525] rounded-none border-b-2 data-[state=active]:border-b-blue-200 text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:font-bold"
               value="forYou"

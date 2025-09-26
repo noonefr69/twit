@@ -33,7 +33,10 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
               className="p-5 relative border-b-2 border-b-[#252525] text-white"
             >
               <div className="flex items-start justify-between min-w-0">
-                <Link href={`/${savedPost.user._id}`} className="flex items-start group">
+                <Link
+                  href={`/${savedPost.user._id}`}
+                  className="flex items-start group"
+                >
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
                       src={savedPost?.user?.image}
@@ -54,6 +57,18 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
               <pre className="my-7 whitespace-pre-wrap break-all">
                 {savedPost.post}
               </pre>
+              {savedPost.image ? (
+                <div className="relative h-96 w-full rounded-md mt-4 bg-[#252525]">
+                  <Image
+                    src={savedPost.image}
+                    alt={savedPost.image}
+                    fill
+                    className="rounded-md"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               <PostFooter post={savedPost} />
             </div>
           );
