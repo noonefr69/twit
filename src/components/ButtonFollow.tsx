@@ -7,9 +7,10 @@ import { BsPersonFill } from "react-icons/bs";
 
 type ButtonFollowProps = {
   userId: string;
+  w?: number;
 };
 
-export default function ButtonDelete({ userId }: ButtonFollowProps) {
+export default function ButtonFollow({ userId, w }: ButtonFollowProps) {
   const [isPending, startTransition] = useTransition();
   const { user, fetchUser } = useUserStore();
 
@@ -34,13 +35,14 @@ export default function ButtonDelete({ userId }: ButtonFollowProps) {
 
   return (
     <form
-      className="flex items-center gap-2 w-full cursor-pointer group"
+      style={{ width: `${w}%` }}
+      className="flex items-center gap-2 cursor-pointer group "
       action={handleChange}
     >
       <button
         disabled={isPending}
         type="submit"
-        className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer w-full px-2 py-1"
+        className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer w-full px-2 py-1 "
       >
         <BsPersonFill
           className={` duration-300 group-hover:text-green-600 group-hover:bg-[#00940f6e] rounded-full ${

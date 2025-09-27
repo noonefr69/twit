@@ -12,7 +12,7 @@ import { UserType } from "@/types/type";
 import { useState, useTransition } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { MdOutlineAddAPhoto } from "react-icons/md";
-import { TbLoaderQuarter } from "react-icons/tb";
+import { TbLoaderQuarter, TbPhotoCheck } from "react-icons/tb";
 
 type ProfileEditProps = {
   userData: UserType;
@@ -21,6 +21,8 @@ type ProfileEditProps = {
 export default function ProfileEdit({ userData }: ProfileEditProps) {
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedSecFile, setSelectedSecFile] = useState<File | null>(null);
 
   function handleChange(formData: FormData) {
     startTransition(async () => {
@@ -38,6 +40,34 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
     });
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File too large! Max 10MB.");
+      e.target.value = "";
+      setSelectedFile(null);
+      return;
+    }
+
+    setSelectedFile(file);
+  }
+
+  function handleFileSecChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File too large! Max 10MB.");
+      e.target.value = "";
+      setSelectedFile(null);
+      return;
+    }
+
+    setSelectedSecFile(file);
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="text-white cursor-pointer rounded-full font-semibold border-2 px-3 duration-300 hover:bg-[#252525] py-1 border-[#ababab]">
@@ -52,10 +82,16 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                 <label
                   htmlFor="userCover"
                   aria-label="Upload image"
-                  className="cursor-pointer bg-[#252525] w-full py-8 text-center flex flex-col gap-2 items-center justify-center rounded-md"
+                  className="cursor-pointer duration-300 bg-[#252525] w-full h-32 text-center flex flex-col gap-2 items-center justify-center rounded-md"
                 >
-                  <MdOutlineAddAPhoto />
-                  Cover
+                  {selectedFile ? (
+                    <TbPhotoCheck className="text-green-600" size={30} />
+                  ) : (
+                    <>
+                      <MdOutlineAddAPhoto />
+                      Cover
+                    </>
+                  )}
                 </label>
                 <input
                   id="userCover"
@@ -63,16 +99,23 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                   name="userCover"
                   accept="image/*"
                   className="hidden"
+                  onChange={handleFileChange}
                 />
               </div>
               <div className="absolute bottom-0 left-2 group flex items-start justify-start duration-300 rounded-full hover:opacity-80">
                 <label
                   htmlFor="userProfileImage"
                   aria-label="Upload image"
-                  className="cursor-pointer bg-[#252525] border-2 border-[#3e3e3e] p-8 text-center flex flex-col gap-2 items-center justify-center rounded-full"
+                  className="cursor-pointer bg-[#252525] border-2 border-[#3e3e3e] h-28 w-28 text-center flex flex-col gap-2 items-center justify-center rounded-full"
                 >
-                  <MdOutlineAddAPhoto />
-                  Profile
+                  {selectedSecFile ? (
+                    <TbPhotoCheck className="text-green-600" size={30} />
+                  ) : (
+                    <>
+                      <MdOutlineAddAPhoto />
+                      Cover
+                    </>
+                  )}
                 </label>
                 <input
                   id="userProfileImage"
@@ -80,6 +123,7 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                   name="userProfileImage"
                   accept="image/*"
                   className="hidden"
+                  onChange={handleFileSecChange}
                 />
               </div>
             </div>
@@ -92,7 +136,7 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                   Name
                 </label>
                 <span className="group-focus-within:block hidden text-muted-foreground font-semibold">
-                  0/50
+                  0 / 50
                 </span>
               </div>
               <input

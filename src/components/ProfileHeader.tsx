@@ -11,6 +11,7 @@ import { useTransition } from "react";
 import { handleFollow } from "@/actions/handleFollow";
 import { TbLoaderQuarter } from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 
 function formatJoined(dateString: string) {
   if (!dateString) return "";
@@ -79,12 +80,30 @@ export default function ProfileHeader({
         <div className="flex flex-col text-white relative -top-[90px]">
           <div className="relative bg-[#252525] rounded-full shadow-sm shadow-[white] w-32 h-32 cursor-pointer">
             {dynamicUser?.image ? (
-              <Image
-                className="rounded-full"
-                src={dynamicUser?.image}
-                alt="userImage"
-                fill
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Image
+                    className="rounded-full cursor-pointer"
+                    src={dynamicUser.image}
+                    alt="userImage"
+                    fill
+                    sizes="128px"
+                  />
+                </DialogTrigger>
+                <DialogContent className="bg-black border-none max-w-fit p-0">
+                  <DialogTitle className="sr-only">
+                    User profile image
+                  </DialogTitle>
+                  <Image
+                    src={dynamicUser.image}
+                    alt="userImageLarge"
+                    width={600}
+                    height={600}
+                    className="rounded-xl object-cover"
+                    priority
+                  />
+                </DialogContent>
+              </Dialog>
             ) : (
               ""
             )}

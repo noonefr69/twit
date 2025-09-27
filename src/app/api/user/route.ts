@@ -13,9 +13,7 @@ export async function GET() {
       });
     }
 
-    const user = await User.find({}).select(
-      "name image bio createdAt"
-    );
+    const user = await User.findOne({ email: session?.user?.email });
 
     if (!user) {
       return new Response(JSON.stringify({ error: "User not found" }), {
@@ -27,6 +25,7 @@ export async function GET() {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+    
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {

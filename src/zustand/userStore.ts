@@ -7,13 +7,12 @@ export const useUserStore = create<UserStore>((set) => ({
   loading: false,
   error: null,
 
-  // fetch user from your API route
   fetchUser: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await fetch("http://localhost:3000/api/users", {
+      const res = await fetch("http://localhost:3000/api/user", {
         cache: "no-store",
-      }); // 👈 your API route
+      }); 
       if (!res.ok) throw new Error("Failed to fetch user");
       const data = await res.json();
 
@@ -35,6 +34,5 @@ export const useUserStore = create<UserStore>((set) => ({
     }
   },
 
-  // manually set user if needed (login/logout, etc.)
   setUser: (user) => set({ user }),
 }));

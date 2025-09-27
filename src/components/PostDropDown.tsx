@@ -35,7 +35,7 @@ export default function PostDropDown({ post }: PostTypesProps) {
           }`}
         >
           {/* Follow Button */}
-          <ButtonFollow userId={post.user._id} />
+          <ButtonFollow userId={post.user._id} w={100}/>
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`focus:bg-[#252525] duration-300 focus:text-white cursor-pointer rounded-none p-0 m-0`}

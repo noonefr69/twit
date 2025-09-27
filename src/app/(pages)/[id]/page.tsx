@@ -10,7 +10,7 @@ export default async function Page({
   const { id } = await params;
 
   // userDynamic Data
-  const userRes = await fetch(`http://localhost:3000/api/users/${id}`, {
+  const userRes = await fetch(`http://localhost:3000/api/user/${id}`, {
     cache: "no-store",
     headers: {
       cookie: (await headers()).get("cookie") || "",
