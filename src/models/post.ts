@@ -24,11 +24,14 @@ const postSchema = new Schema(
     ],
     comments: [
       {
-        user: {
-          type: String,
+        userCom: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
         },
         text: {
           type: String,
+          required: true,
         },
         createdAt: {
           type: Date,

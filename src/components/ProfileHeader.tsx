@@ -105,7 +105,13 @@ export default function ProfileHeader({
                 </DialogContent>
               </Dialog>
             ) : (
-              ""
+              <Image
+                className="rounded-full cursor-pointer"
+                src={"/unknown.png"}
+                alt="userImage"
+                fill
+                sizes="128px"
+              />
             )}
           </div>
           <div className="mt-5 space-y-2">

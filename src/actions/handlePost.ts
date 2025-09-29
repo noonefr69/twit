@@ -42,10 +42,9 @@ export async function handlePost(formData: FormData) {
         .end(buffer);
     });
 
-    imageUrl = result.secure_url; // save cloudinary url
+    imageUrl = result.secure_url; 
   }
 
-  // ✅ Save post with/without image
   await Post.create({
     post,
     user: user._id,

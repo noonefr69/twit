@@ -1,5 +1,11 @@
 export type Comment = {
-  user: string;
+  _id: string;
+  userCom: {
+    _id: string;
+    name: string;
+    email: string;
+    image: string;
+  };
   text: string;
   createdAt: string; // or Date if you convert it
 };

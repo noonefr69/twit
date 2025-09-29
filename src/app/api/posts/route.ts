@@ -15,6 +15,7 @@ export async function GET() {
 
     const posts = await Post.find({})
       .populate("user", "name image") // only get the fields you need
+      .populate("comments.userCom", "name image")
       .sort({ createdAt: -1 })
       .lean();
 

@@ -21,7 +21,7 @@ export default function RootLayout({
         <div className="col-span-6 grid border-x-2 border-x-[#252525] min-h-screen">
           {children}
         </div>
-        <div className="grid col-span-3 text-white">
+        <div className="grid col-span-3 text-white h-fit sticky top-0">
           <Search />
         </div>
       </div>
