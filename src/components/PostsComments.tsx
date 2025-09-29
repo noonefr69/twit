@@ -72,7 +72,7 @@ export default function PostsComments({ post }: PostsCommentsProps) {
                   </div>
                 </Link>
                 <div>
-                  <ButtonDropDownComment commentOwner={comment.userCom._id} postId={post._id} commentId={comment._id}/>
+                  <ButtonDropDownComment post={post} commentOwner={comment.userCom._id} postId={post._id} commentId={comment._id}/>
                 </div>
               </div>
             ))

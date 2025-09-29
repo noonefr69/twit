@@ -17,13 +17,22 @@ export async function handleDeleteComment(postId: string, commentId: string) {
   const user = await User.findOne({ email: session.user.email });
   if (!user) throw new Error("User not found");
 
-  const post = await Post.findOneAndUpdate(
-    { _id: postId },
-    { $pull: { comments: { _id: commentId, userCom: user._id } } },
-    { new: true }
-  );
+  const post = await Post.findById(postId);
+  if (!post) throw new Error("Post not found");
 
-  if (!post) throw new Error("Post or comment not found");
+  const comment = post.comments.id(commentId);
+  if (!comment) throw new Error("Comment not found");
+
+  const isCommentOwner = comment.userCom.toString() === user._id.toString();
+  const isPostOwner = post.user.toString() === user._id.toString();
+
+  if (!isCommentOwner && !isPostOwner) {
+    throw new Error("Not allowed to delete this comment");
+  }
+
+  // remove comment
+  comment.deleteOne();
+  await post.save();
 
   revalidatePath("/home");
   revalidatePath("/saved");
