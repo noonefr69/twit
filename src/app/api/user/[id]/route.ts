@@ -1,13 +1,14 @@
 import dbConnect from "@/lib/db";
 import User from "@/models/user";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
   try {
     await dbConnect();
-    const user = await User.findById(params.id).select(
+    const user = await User.findById(context.params.id).select(
       "name image cover bio followers following createdAt"
     );
 
