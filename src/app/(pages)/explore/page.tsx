@@ -1,7 +1,7 @@
 import Posts from "@/components/Posts";
 import { headers } from "next/headers";
 import React, { Suspense } from "react";
-import { IoIosSearch } from "react-icons/io";
+// import { IoIosSearch } from "react-icons/io";
 
 export default async function Explore() {
   const res = await fetch("http://localhost:3000/api/posts", {

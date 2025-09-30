@@ -19,7 +19,7 @@ export async function GET(
 
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+    return new Response(JSON.stringify({ error: "Internal Server Error" + err }), {
       status: 500,
     });
   }

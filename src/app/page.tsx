@@ -1,11 +1,11 @@
 import { auth, signIn } from "@/auth";
-import Image from "next/image";
+// import Image from "next/image";
 import { Newsreader, Open_Sans } from "next/font/google";
-import { BsGithub, BsGoogle, BsGooglePlay } from "react-icons/bs";
+import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import User from "@/models/user";
+// import User from "@/models/user";
 
 const newsreader = Newsreader({
   variable: "--font-geist-sans",
@@ -89,7 +89,7 @@ export default async function Login() {
         </p>
       </div>
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-muted-foreground text-sm">
-        @{new Date().getFullYear()} — This is a personal demo project and is not
+        @{`2025`} — This is a personal demo project and is not
         affiliated with Twitter / X or its affiliates.
       </div>
     </div>

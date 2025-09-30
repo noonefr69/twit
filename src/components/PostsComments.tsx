@@ -11,7 +11,6 @@ import ButtonAddComment from "./ButtonAddComment";
 import Image from "next/image";
 import { timeAgo } from "@/utils/timeChanger";
 import Link from "next/link";
-import { RxDotsHorizontal } from "react-icons/rx";
 import ButtonDropDownComment from "./ButtonDropDownComment";
 
 type PostsCommentsProps = {

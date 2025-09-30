@@ -1,5 +1,4 @@
 import React from "react";
-import { headers } from "next/headers";
 import { PostTypes } from "@/types/type";
 import Image from "next/image";
 import PostDropDown from "./PostDropDown";

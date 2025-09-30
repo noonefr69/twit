@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { UserType } from "@/types/type";
 import { useState, useTransition } from "react";
-import { CiCirclePlus } from "react-icons/ci";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { TbLoaderQuarter, TbPhotoCheck } from "react-icons/tb";
 

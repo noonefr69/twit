@@ -1,7 +1,6 @@
 "use client";
 
 import { PostTypes } from "@/types/type";
-import { formatDistanceToNow } from "date-fns";
 import { useUserStore } from "@/zustand/userStore";
 import PostFooter from "./PostFooter";
 import PostDropDown from "./PostDropDown";
@@ -24,7 +23,7 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
     <div className="break-all">
       {likedPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
-          You don't like any post!
+          You don&apos;t like any post!
         </div>
       ) : (
         likedPosts.map((likedPost: PostTypes) => {

@@ -2,7 +2,6 @@ import PostFooter from "./PostFooter";
 import PostDropDown from "./PostDropDown";
 import Image from "next/image";
 import { PostTypes, UserType } from "@/types/type";
-import { formatDistanceToNow } from "date-fns";
 import { timeAgo } from "@/utils/timeChanger";
 import Link from "next/link";
 
@@ -23,7 +22,7 @@ export default function ProfileFooterPosts({
     <div>
       {userItSelfPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
-          You don't create any post!
+          You don&apos;t create any post!
         </div>
       ) : (
         userItSelfPosts.map((post: PostTypes) => {

@@ -15,10 +15,11 @@ export async function handleComment(formData: FormData) {
   const user = await User.findOne({ email: session.user.email });
   if (!user) throw new Error("User not found");
 
-  const comment = formData.get("comment") as String;
-  if (!comment || comment.trim() == "") throw new Error("Enter valid value");
+  const comment = formData.get("comment");
+  if (!comment || typeof comment !== "string" || comment.trim() == "")
+    throw new Error("Enter valid value");
 
-  const postId = formData.get("postId") as String;
+  const postId = formData.get("postId");
   if (!postId) throw new Error("Post id not found!");
 
   const post = await Post.findById(postId);

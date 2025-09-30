@@ -13,7 +13,7 @@ import { TbLoaderQuarter } from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 
-function formatJoined(dateString: string) {
+function formatJoined(dateString?: string) {
   if (!dateString) return "";
   return `Joined ${format(new Date(dateString), "MMMM yyyy")}`;
 }
@@ -119,7 +119,7 @@ export default function ProfileHeader({
             <pre>{dynamicUser.bio ? dynamicUser.bio : ""}</pre>
             <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <BsCalendar2WeekFill />
-              <span>{formatJoined(dynamicUser?.createdAt!)}</span>
+              <span>{formatJoined(dynamicUser?.createdAt)}</span>
             </div>
             <div className="flex items-center gap-3 text-muted-foreground text-sm">
               <div>

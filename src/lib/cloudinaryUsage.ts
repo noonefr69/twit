@@ -6,7 +6,7 @@ export async function getCloudinaryUsageMB() {
 
   // Convert bytes to MB
   const storageUsedMB = usage.storage.usage / 1024 / 1024;
-  const storageLimitMB = usage.credits.limit ? usage.credits.limit : null; // free plan limit in credits, not storage, optional
+  // const storageLimitMB = usage.credits.limit ? usage.credits.limit : null; // free plan limit in credits, not storage, optional
   const bandwidthUsedMB = usage.bandwidth.usage / 1024 / 1024;
   const transformationsUsed = usage.transformations.usage;
 

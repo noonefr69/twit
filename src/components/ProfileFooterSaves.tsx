@@ -23,7 +23,7 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
     <div className="break-all">
       {savedPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
-          You don't save any post!
+          You don&apos;t save any post!
         </div>
       ) : (
         savedPosts.map((savedPost: PostTypes) => {

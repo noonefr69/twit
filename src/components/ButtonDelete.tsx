@@ -33,6 +33,7 @@ export default function ButtonDelete({ postId }: ButtonDeleteProps) {
       action={handleChange}
     >
       <button
+        disabled={isPending}
         type="submit"
         className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer px-2 py-1 w-full"
       >

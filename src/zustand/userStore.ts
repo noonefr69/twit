@@ -12,7 +12,7 @@ export const useUserStore = create<UserStore>((set) => ({
     try {
       const res = await fetch("http://localhost:3000/api/user", {
         cache: "no-store",
-      }); 
+      });
       if (!res.ok) throw new Error("Failed to fetch user");
       const data = await res.json();
 
@@ -29,8 +29,12 @@ export const useUserStore = create<UserStore>((set) => ({
       };
 
       set({ user: safeUser, loading: false });
-    } catch (err: any) {
-      set({ error: err.message, loading: false });
+    } catch (err) {
+      if (err instanceof Error) {
+        set({ error: err.message, loading: false });
+      } else {
+        set({ error: "An unexpected error occurred", loading: false });
+      }
     }
   },
 

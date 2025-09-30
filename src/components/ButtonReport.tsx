@@ -34,11 +34,11 @@ export default function ButtonReport({ postId }: Props) {
   }
 
   function handleChange(formData: FormData) {
-    // if (textAreaRef.current?.value.trim() == "") {
-    //   setErr(true);
-    // } else {
-    //   setErr(false);
-    // }
+    if (textAreaRef.current?.value.trim() == "") {
+      setErr(true);
+    } else {
+      setErr(false);
+    }
     startTransition(async () => {
       try {
         await handleReport(formData, postId);

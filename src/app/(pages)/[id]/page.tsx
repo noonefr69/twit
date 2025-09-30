@@ -28,13 +28,13 @@ export default async function Page({
   const posts = await postsRes.json();
 
   // user post
-  const postRes = await fetch(`http://localhost:3000/api/post`, {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
-  });
-  const post = await postRes.json();
+  // const postRes = await fetch(`http://localhost:3000/api/post`, {
+  //   cache: "no-store",
+  //   headers: {
+  //     cookie: (await headers()).get("cookie") || "",
+  //   },
+  // });
+  // const post = await postRes.json();
 
   return (
     <div className="">

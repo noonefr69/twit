@@ -6,6 +6,7 @@ import dbConnect from "@/lib/db";
 import Post from "@/models/post";
 import User from "@/models/user";
 import { revalidatePath } from "next/cache";
+import type { UploadApiResponse } from "cloudinary";
 
 export async function handlePost(formData: FormData) {
   const session = await auth();
@@ -30,11 +31,11 @@ export async function handlePost(formData: FormData) {
     const arrayBuffer = await image.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
 
-    const result: any = await new Promise((resolve, reject) => {
+    const result: UploadApiResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({}, (error, result) => {
-          if (error) {
-            reject(error);
+          if (error || !result) {
+            reject(error || new Error("No result from Cloudinary"));
             return;
           }
           resolve(result);
@@ -42,7 +43,7 @@ export async function handlePost(formData: FormData) {
         .end(buffer);
     });
 
-    imageUrl = result.secure_url; 
+    imageUrl = result.secure_url;
   }
 
   await Post.create({
