@@ -56,7 +56,7 @@ export default function ProfileHeader({
 
   return (
     <div>
-      <nav className="flex items-center justify-between p-3 text-white">
+      <nav className="flex items-center justify-between md:p-3 py-3 text-white">
         <div className="flex items-center">
           <Link href={`/home`}>
             <IoArrowBack size={22} className="mr-4" />
@@ -76,7 +76,7 @@ export default function ProfileHeader({
         )}
       </div>
 
-      <div className="flex items-start justify-between p-5">
+      <div className="flex items-start justify-between md:p-5 py-5">
         <div className="flex flex-col text-white relative -top-[90px]">
           <div className="relative bg-[#252525] rounded-full shadow-sm shadow-[white] w-32 h-32 cursor-pointer">
             {dynamicUser?.image ? (

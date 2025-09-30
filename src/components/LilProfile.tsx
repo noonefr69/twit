@@ -25,8 +25,8 @@ export default async function LilProfile() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="text-start outline-none border-none">
-        <div className="flex items-center justify-between mb-3 duration-300 hover:bg-[#202020] cursor-pointer rounded-full px-3 py-2">
+      <DropdownMenuTrigger className="text-start outline-none border-none hidden md:flex w-full">
+        <div className="flex items-center justify-between w-full mb-3 duration-300 hover:bg-[#202020] cursor-pointer rounded-full px-3 py-2">
           <div className="flex items-center gap-2">
             <Image
               className="rounded-full"
@@ -35,12 +35,12 @@ export default async function LilProfile() {
               width={40}
               height={40}
             />
-            <div>
+            <div className="lg:flex flex-col hidden">
               <h1 className="text-white text-sm font-semibold">{user.name}</h1>
               <h3 className="text-muted-foreground text-sm">{user.email}</h3>
             </div>
           </div>
-          <RxDotsHorizontal className="text-white" />
+          <RxDotsHorizontal className="text-white lg:flex hidden" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-black relative rounded-xl -top-2 border-[#202020] shadow-sm shadow-[#ffffff59] outline-none w-72 p-0 m-0 ">

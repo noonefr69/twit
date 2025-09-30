@@ -13,15 +13,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="bg-black h-screen">
+    <main className="bg-black md:h-screen">
       <div className={`mx-auto max-w-[1240px] grid grid-cols-12 gap-4`}>
-        <div className="grid col-span-3 relative">
+        <div className="absolute bottom-0 left-0 right-0 md:grid md:col-span-1 z-50 lg:col-span-3 md:relative">
           <Navbar />
         </div>
-        <div className="col-span-6 grid border-x-2 border-x-[#252525] min-h-screen">
+        <div className="col-span-12 md:col-span-11 lg:col-span-6 grid md:border-x-2 md:border-x-[#252525] min-h-screen">
           {children}
         </div>
-        <div className="grid col-span-3 text-white h-fit sticky top-0">
+        <div className="lg:grid hidden lg:col-span-3 text-white h-fit sticky top-0">
           <Search />
         </div>
       </div>

@@ -20,7 +20,7 @@ export default async function Home() {
   const posts = await res.json();
 
   return (
-    <div className="text-white ">
+    <div className="text-white">
       <div className="">
         <Tabs defaultValue="forYou" className="w-full gap-0">
           <TabsList className="w-full bg-[#000000e0] m-0 p-0 h-fit rounded-none sticky top-0 z-30">

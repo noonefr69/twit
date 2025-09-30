@@ -58,7 +58,7 @@ export default function ButtonAddPostFromNavbar() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-white mt-2 text-black cursor-pointer rounded-full w-full py-3 duration-300 hover:opacity-70 font-bold text-lg">
+      <DialogTrigger className="hidden lg:flex items-center justify-center bg-white mt-2 text-black cursor-pointer rounded-full w-full py-3 duration-300 hover:opacity-70 font-bold text-lg">
         Post
       </DialogTrigger>
       <DialogContent className="bg-black min-h-64 max-h-[50rem] overflow-y-auto flex flex-col justify-center border-2 border-[#252525]">

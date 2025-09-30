@@ -30,13 +30,15 @@ export default function NavLinks() {
   }, [fetchUser]);
 
   return (
-    <div className="space-y-2">
+    <div className="flex md:flex-col flex-row md:relative md:bg-transparent bg-[black] border-2 md:border-transparent z-[9999] border-[#252525] p-2 rounded-t-xl fixed bottom-0 left-0 right-0 justify-between space-y-2">
       {" "}
       <Link
         href={`/home`}
-        className={`text-2xl relative font-semibold  px-3 py-2 rounded-full mt-3 flex items-center justify-center duration-300 hover:bg-[#202020] text-white w-fit ${newsreader.className}`}
+        className={`text-2xl relative font-semibold hidden md:flex px-3 py-2 rounded-full mt-3 items-center justify-center duration-300 hover:bg-[#202020] text-white w-fit ${newsreader.className}`}
       >
-        <span className="relative top-1">TWIT</span>
+        <span className="relative top-1 flex">
+          T <span className="hidden lg:flex">WIT</span>
+        </span>
       </Link>
       <Link
         className={`text-2xl px-3 py-2 transition-all rounded-full text-white flex items-center gap-2 w-fit duration-300 hover:bg-[#202020]`}
@@ -47,14 +49,14 @@ export default function NavLinks() {
             pathName == "/home" ? "hidden" : "flex"
           }`}
         >
-          <GoHome /> Home
+          <GoHome /> <span className="lg:flex hidden">Home</span>
         </span>
         <span
           className={`items-center font-bold gap-2 ${
             pathName == "/home" ? "flex" : "hidden"
           }`}
         >
-          <GoHomeFill /> Home
+          <GoHomeFill /> <span className="lg:flex hidden">Home</span>
         </span>
       </Link>
       <Link
@@ -66,14 +68,14 @@ export default function NavLinks() {
             pathName == "/explore" ? "hidden" : "flex"
           }`}
         >
-          <IoIosSearch /> Explore
+          <IoIosSearch /> <span className="hidden lg:flex">Explore</span>
         </span>
         <span
           className={`items-center font-bold gap-2 ${
             pathName == "/explore" ? "flex" : "hidden"
           }`}
         >
-          <FaSearch /> Explore
+          <FaSearch /> <span className="hidden lg:flex">Explore</span>
         </span>
       </Link>
       <Link
@@ -85,14 +87,16 @@ export default function NavLinks() {
             pathName == "/notifications" ? "hidden" : "flex"
           }`}
         >
-          <IoMdNotificationsOutline /> Notifications
+          <IoMdNotificationsOutline />{" "}
+          <span className="hidden lg:flex">Notifications</span>
         </span>
         <span
           className={`items-center font-bold gap-2 ${
             pathName == "/notifications" ? "flex" : "hidden"
           }`}
         >
-          <IoMdNotifications /> Notifications
+          <IoMdNotifications />{" "}
+          <span className="hidden lg:flex">Notifications</span>
         </span>
       </Link>
       <Link
@@ -104,14 +108,14 @@ export default function NavLinks() {
             pathName == "/saved" ? "hidden" : "flex"
           }`}
         >
-          <RiPushpin2Line /> Saved
+          <RiPushpin2Line /> <span className="hidden lg:flex">Saved</span>
         </span>
         <span
           className={`items-center font-bold gap-2 ${
             pathName == "/saved" ? "flex" : "hidden"
           }`}
         >
-          <RiPushpin2Fill /> Saved
+          <RiPushpin2Fill /> <span className="hidden lg:flex">Saved</span>
         </span>
       </Link>
       <Link
@@ -123,14 +127,14 @@ export default function NavLinks() {
             pathName == `/${user?._id}` ? "hidden" : "flex"
           }`}
         >
-          <BsPerson /> Profile
+          <BsPerson /> <span className="hidden lg:flex">Profile</span>
         </span>
         <span
           className={`items-center font-bold gap-2 ${
             pathName == `/${user?._id}` ? "flex" : "hidden"
           }`}
         >
-          <MdPerson /> Profile
+          <MdPerson /> <span className="hidden lg:flex">Profile</span>
         </span>
       </Link>
       <ButtonAddPostFromNavbar />

@@ -13,7 +13,7 @@ export default async function Explore() {
   const posts = await res.json();
 
   return (
-    <div className="text-white flex flex-col">
+    <div className="text-white flex flex-col mb-16">
       {/* <div className="relative w-full mt-4 px-4 mb-2 ">
         <IoIosSearch className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-400" />
         <input

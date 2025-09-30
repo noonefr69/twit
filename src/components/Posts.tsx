@@ -18,7 +18,7 @@ export default async function Posts({ posts }: PostsProps) {
         return (
           <div
             key={post._id}
-            className="p-5 relative border-b-2 border-b-[#252525]"
+            className="py-5 md:p-5 relative border-b-2 border-b-[#252525]"
           >
             <div className="flex items-start justify-between min-w-0">
               <Link
