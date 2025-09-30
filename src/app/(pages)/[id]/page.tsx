@@ -2,8 +2,12 @@ import ProfileFooter from "@/components/ProfileFooter";
 import ProfileHeader from "@/components/ProfileHeader";
 import { headers } from "next/headers";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
   // userDynamic Data
   const userRes = await fetch(`http://localhost:3000/api/user/${id}`, {

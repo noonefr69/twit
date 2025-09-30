@@ -1,14 +1,14 @@
 import dbConnect from "@/lib/db";
 import User from "@/models/user";
-import { NextRequest } from "next/server";
 
 export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } }
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
-    const user = await User.findById(context.params.id).select(
+    const user = await User.findById(id).select(
       "name image cover bio followers following createdAt"
     );
 
@@ -20,8 +20,11 @@ export async function GET(
 
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Internal Server Error" + err }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: "Internal Server Error" + err }),
+      {
+        status: 500,
+      }
+    );
   }
 }
