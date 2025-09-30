@@ -29,7 +29,7 @@ export default function Error({
           <Link className="text-blue-500 font-semibold hover:underline" href={`https://github.com/noonefr69`}>
             support{" "}
           </Link>{" "}
-          if the issue persists.
+          if the issue persists. {error}
         </p>
         <button
           onClick={() => reset()}
