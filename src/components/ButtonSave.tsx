@@ -4,6 +4,7 @@ import { handleSave } from "@/actions/handleSave";
 import { useUserStore } from "@/zustand/userStore";
 import { useTransition } from "react";
 import { RiPushpin2Fill } from "react-icons/ri";
+import { toast } from "react-hot-toast";
 
 type ButtonLikeProp = {
   postId: string;
@@ -21,13 +22,18 @@ export default function ButtonSave({ postId, p, label, w }: ButtonLikeProp) {
     : false;
 
   function handleClick() {
-    startTransition(async () => {
-      try {
-        await handleSave(postId);
-        await fetchUser();
-      } catch (err) {
-        console.error(err);
-      }
+    startTransition(() => {
+      toast.promise(
+        (async () => {
+          await handleSave(postId);
+          await fetchUser();
+        })(),
+        {
+          loading: alreadySaved ? "Unsaving..." : "Saving...",
+          success: alreadySaved ? "Unsaved!" : "Saved!",
+          error: (err) => err?.message || "Something went wrong",
+        }
+      );
     });
   }
 

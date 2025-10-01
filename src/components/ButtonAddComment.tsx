@@ -3,6 +3,7 @@
 import { handleComment } from "@/actions/handleComment";
 import { PostTypes } from "@/types/type";
 import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { TbLoaderQuarter } from "react-icons/tb";
 
 type ButtonAddCommentProps = {
@@ -16,8 +17,10 @@ export default function ButtonAddComment({ post }: ButtonAddCommentProps) {
     startTransition(async () => {
       try {
         await handleComment(formData);
+        toast.success("Comment added successfully!");
       } catch (error) {
         console.log(error);
+        toast.error("Somthing went wrong!");
       }
     });
   }

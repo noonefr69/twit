@@ -4,6 +4,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { TbLoaderQuarter, TbPhotoCheck } from "react-icons/tb"; // added check icon
 import { handlePost } from "@/actions/handlePost";
 import { useRef, useState, useTransition } from "react";
+import toast from "react-hot-toast";
 
 export default function AddPost() {
   const [isPending, startTransition] = useTransition();
@@ -45,6 +46,7 @@ export default function AddPost() {
     startTransition(async () => {
       try {
         await handlePost(formData);
+        toast.success("Post was added!");
         if (textAreaRef.current) {
           textAreaRef.current.value = "";
           textAreaRef.current.style.height = "auto";
@@ -54,6 +56,7 @@ export default function AddPost() {
         setSelectedFile(null); // reset file after posting
       } catch (error) {
         console.error(error);
+        toast.error("Somthing went wrong!");
       }
     });
   }

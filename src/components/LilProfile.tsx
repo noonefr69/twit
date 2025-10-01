@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import backupImafe from "../../public/unknown.png";
 import Image from "next/image";
 import React from "react";
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -30,7 +31,7 @@ export default async function LilProfile() {
           <div className="flex items-center gap-2">
             <Image
               className="rounded-full"
-              src={user.image || "unknown.png"}
+              src={user.image || backupImafe}
               alt="logo.png"
               width={40}
               height={40}

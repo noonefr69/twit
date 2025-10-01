@@ -4,6 +4,7 @@ import { handleFollow } from "@/actions/handleFollow";
 import { useTransition } from "react";
 import { useUserStore } from "@/zustand/userStore";
 import { BsPersonFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 type ButtonFollowProps = {
   userId: string;
@@ -15,19 +16,18 @@ export default function ButtonFollow({ userId, w }: ButtonFollowProps) {
   const { user, fetchUser } = useUserStore();
 
   function handleChange() {
-    startTransition(async () => {
-      try {
-        await handleFollow(userId);
-        await fetchUser();
-        // toast.success("Pots deleted successfully!");
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          console.log(err.message);
-          //   toast.error(err.message);
-        } else {
-          console.error("Something went wrong");
+    startTransition(() => {
+      toast.promise(
+        (async () => {
+          await handleFollow(userId);
+          await fetchUser();
+        })(),
+        {
+          loading: alreadyFollowed ? "Unfollowing..." : "Following...",
+          success: alreadyFollowed ? "Unfollowed!" : "Followed!",
+          error: (err) => err?.message || "Something went wrong",
         }
-      }
+      );
     });
   }
 

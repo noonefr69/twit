@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Search from "@/components/Search";
 import type { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,6 +26,7 @@ export default function RootLayout({
           <Search />
         </div>
       </div>
+      <Toaster />
     </main>
   );
 }

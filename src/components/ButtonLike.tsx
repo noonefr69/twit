@@ -4,6 +4,7 @@ import { toggleLike } from "@/actions/handleLike";
 import { useUserStore } from "@/zustand/userStore";
 import { useTransition } from "react";
 import { FaHeart } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 type ButtonLikeProp = {
   postId: string;
@@ -16,8 +17,15 @@ export default function ButtonLike({ postId, postLiked }: ButtonLikeProp) {
   const alreadyLiked = user?._id ? postLiked.includes(user._id) : false;
 
   function handleClick() {
-    startTransition(async () => {
-      await toggleLike(postId);
+    startTransition(() => {
+      toast.promise(
+        toggleLike(postId),
+        {
+          loading: alreadyLiked ? "Unliking..." : "Liking...",
+          success: alreadyLiked ? "Unliked!" : "Liked!",
+          error: (err) => err?.message || "Something went wrong",
+        }
+      );
     });
   }
 

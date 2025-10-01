@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useRef, useState, useTransition } from "react";
+import toast from "react-hot-toast";
 import { TbLoaderQuarter } from "react-icons/tb";
 
 export default function ButtonAddPostFromNavbar() {
@@ -41,7 +42,7 @@ export default function ButtonAddPostFromNavbar() {
     startTransition(async () => {
       try {
         await handlePost(formData);
-
+        toast.success("Post was added!");
         if (textAreaRef.current) {
           textAreaRef.current.value = "";
           textAreaRef.current.style.height = "auto";
@@ -52,6 +53,7 @@ export default function ButtonAddPostFromNavbar() {
         setOpen(false);
       } catch (error) {
         console.error(error);
+        toast.error("Something went wrong");
       }
     });
   }

@@ -2,6 +2,7 @@
 
 import { handleDeleteComment } from "@/actions/handleDeleteComment";
 import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 type ButtonDeleteCommentProps = {
@@ -19,11 +20,11 @@ export default function ButtonDeleteComment({
     startTransition(async () => {
       try {
         await handleDeleteComment(postId, commentId);
-        // toast.success("Pots deleted successfully!");
+        toast.success("Comment deleted successfully!");
       } catch (err: unknown) {
         if (err instanceof Error) {
           console.log(err.message);
-          //   toast.error(err.message);
+          toast.error(err.message);
         } else {
           console.error("Something went wrong");
         }
@@ -37,7 +38,7 @@ export default function ButtonDeleteComment({
       action={handleChange}
     >
       <button
-      disabled={isPending}
+        disabled={isPending}
         type="submit"
         className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer px-2 py-1 w-full"
       >

@@ -2,6 +2,7 @@
 
 import { handleDelete } from "@/actions/handleDelete";
 import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 type ButtonDeleteProps = {
@@ -15,11 +16,11 @@ export default function ButtonDelete({ postId }: ButtonDeleteProps) {
     startTransition(async () => {
       try {
         await handleDelete(postId);
-        // toast.success("Pots deleted successfully!");
+        toast.success("Post deleted successfully!");
       } catch (err: unknown) {
         if (err instanceof Error) {
           console.log(err.message);
-          //   toast.error(err.message);
+          toast.error(err.message);
         } else {
           console.error("Something went wrong");
         }

@@ -8,6 +8,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { format } from "date-fns";
 import { PostTypes, UserType } from "@/types/type";
 import { useTransition } from "react";
+import { toast } from "react-hot-toast";
 import { handleFollow } from "@/actions/handleFollow";
 import { TbLoaderQuarter } from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
@@ -31,18 +32,18 @@ export default function ProfileHeader({
   const [isPending, startTransition] = useTransition();
 
   function handleChange() {
-    startTransition(async () => {
-      try {
-        await handleFollow(dynamicUser?._id);
-        await fetchUser();
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          console.log(err.message);
-          //   toast.error(err.message);
-        } else {
-          console.error("Something went wrong");
+    startTransition(() => {
+      toast.promise(
+        (async () => {
+          await handleFollow(dynamicUser?._id);
+          await fetchUser();
+        })(),
+        {
+          loading: alreadyFollowed ? "Unfollowing..." : "Following...",
+          success: alreadyFollowed ? "Unfollowed!" : "Followed!",
+          error: (err) => err?.message || "Something went wrong",
         }
-      }
+      );
     });
   }
 

@@ -11,6 +11,7 @@ import { useRef, useState, useTransition } from "react";
 import { MdReport } from "react-icons/md";
 import { TbLoaderQuarter } from "react-icons/tb";
 import { handleReport } from "@/actions/handleReport";
+import { toast } from "react-hot-toast";
 
 type Props = {
   postId: string;
@@ -36,22 +37,28 @@ export default function ButtonReport({ postId }: Props) {
   function handleChange(formData: FormData) {
     if (textAreaRef.current?.value.trim() == "") {
       setErr(true);
+      return;
     } else {
       setErr(false);
     }
-    startTransition(async () => {
-      try {
-        await handleReport(formData, postId);
-        setOpen(false);
-        if (textAreaRef.current) {
-          textAreaRef.current.value = "";
-          textAreaRef.current.style.height = "auto";
+    startTransition(() => {
+      toast.promise(
+        (async () => {
+          await handleReport(formData, postId);
+          setOpen(false);
+          if (textAreaRef.current) {
+            textAreaRef.current.value = "";
+            textAreaRef.current.style.height = "auto";
+          }
+          setTextAreaLength(0);
+          setTextAreaInput(false);
+        })(),
+        {
+          loading: "Reporting...",
+          success: "Report submitted!",
+          error: (err) => err?.message || "Something went wrong",
         }
-        setTextAreaLength(0);
-        setTextAreaInput(false);
-      } catch (error) {
-        console.error(error);
-      }
+      );
     });
   }
 
