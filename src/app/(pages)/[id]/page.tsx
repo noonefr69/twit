@@ -10,12 +10,15 @@ export default async function Page({
   const { id } = await params;
 
   // userDynamic Data
-  const userRes = await fetch(`http://localhost:3000/api/user/${id}`, {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
-  });
+  const userRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/${id}`,
+    {
+      cache: "no-store",
+      headers: {
+        cookie: (await headers()).get("cookie") || "",
+      },
+    }
+  );
   const user = await userRes.json();
 
   // All Posts

@@ -10,7 +10,7 @@ export const useUserStore = create<UserStore>((set) => ({
   fetchUser: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await fetch("http://localhost:3000/api/user", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user`, {
         cache: "no-store",
       });
       if (!res.ok) throw new Error("Failed to fetch user");

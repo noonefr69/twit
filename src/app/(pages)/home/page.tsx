@@ -11,7 +11,7 @@ export default async function Home() {
   const session = await auth();
   if (!session) redirect("/");
 
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts`, {
     cache: "no-store",
     headers: {
       cookie: (await headers()).get("cookie") || "",

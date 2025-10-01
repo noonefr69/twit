@@ -15,7 +15,7 @@ export default async function LilProfile() {
   const session = await auth();
   if (!session) redirect("/");
 
-  const res = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user`, {
     cache: "no-store",
     headers: {
       cookie: (await headers()).get("cookie") || "",
