@@ -22,12 +22,15 @@ export default async function Page({
   const user = await userRes.json();
 
   // All Posts
-  const postsRes = await fetch("http://localhost:3000/api/posts", {
-    cache: "no-store",
-    headers: {
-      cookie: (await headers()).get("cookie") || "",
-    },
-  });
+  const postsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/posts`,
+    {
+      cache: "no-store",
+      headers: {
+        cookie: (await headers()).get("cookie") || "",
+      },
+    }
+  );
   const posts = await postsRes.json();
 
   // user post
