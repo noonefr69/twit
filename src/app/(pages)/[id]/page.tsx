@@ -1,6 +1,28 @@
 import ProfileFooter from "@/components/ProfileFooter";
 import ProfileHeader from "@/components/ProfileHeader";
 import { headers } from "next/headers";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = (await params).id;
+
+  const post = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user/${id}`
+  ).then((res) => res.json());
+
+  return {
+    title: post.name,
+    description: post.bio || `Profile page for ${post.name}. View bio, followers, following, and posts.`,
+  };
+}
 
 export default async function Page({
   params,

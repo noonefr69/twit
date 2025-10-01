@@ -3,9 +3,15 @@ import AddPost from "@/components/AddPost";
 import Posts from "@/components/Posts";
 import PostsFollowing from "@/components/PostsFollowing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Your personalized feed. See posts from people you follow and join the conversation.",
+};
 
 export default async function Home() {
   const session = await auth();
