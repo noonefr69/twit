@@ -78,7 +78,7 @@ export default function NavLinks() {
           <FaSearch /> <span className="hidden lg:flex">Explore</span>
         </span>
       </Link>
-      <Link
+      {/* <Link
         className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}
         href={`/notifications`}
       >
@@ -98,7 +98,7 @@ export default function NavLinks() {
           <IoMdNotifications />{" "}
           <span className="hidden lg:flex">Notifications</span>
         </span>
-      </Link>
+      </Link> */}
       <Link
         className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}
         href={`/saved`}
