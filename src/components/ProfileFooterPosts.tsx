@@ -29,7 +29,7 @@ export default function ProfileFooterPosts({
           return (
             <div
               key={post._id}
-              className="md:p-5 py-5 relative border-b-2 border-b-[#252525] text-white"
+              className="md:p-5 px-4 py-5 relative border-b-2 border-b-[#252525] text-white"
             >
               <div className="flex items-start justify-between min-w-0">
                 <Link

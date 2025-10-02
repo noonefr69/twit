@@ -22,20 +22,20 @@ export default async function Login() {
   if (session) {
     redirect("/home");
   }
-  
+
   return (
-    <div className="h-screen bg-black flex items-center justify-center max-w-[1440px] mx-auto">
+    <div className="min-h-screen bg-black flex flex-col md:flex-row items-center justify-center max-w-[1440px] mx-auto px-4 md:px-0">
       <div
-        className={`text-[10rem] font-semibold text-white w-1/2 h-screen flex items-center justify-center ${newsreader.className} antialiased`}
+        className={`text-[5rem] md:text-[10rem] font-semibold text-white w-full md:w-1/2 h-[200px] md:h-screen flex items-center justify-center ${newsreader.className} antialiased`}
       >
         TWIT
       </div>
-      <div className={`w-1/2 ${openSans.className} antialiased`}>
-        <h1 className={`text-white text-7xl font-bold mb-10`}>Happening now</h1>
-        <h3 className="text-white text-4xl font-bold mb-7">Join today.</h3>
-        <div className=" space-y-5">
+      <div className={`w-full md:w-1/2 ${openSans.className} antialiased flex flex-col items-center md:items-start`}>
+        <h1 className="text-white text-4xl md:text-7xl font-bold mb-6 md:mb-10 text-center md:text-left">Happening now</h1>
+        <h3 className="text-white text-2xl md:text-4xl font-bold mb-5 md:mb-7 text-center md:text-left">Join today.</h3>
+        <div className="space-y-4 md:space-y-5 flex flex-col items-center md:items-start">
           <form
-            className="w-full"
+            className="w-full flex justify-center md:justify-start"
             action={async () => {
               "use server";
               await signIn("google");
@@ -43,13 +43,13 @@ export default async function Login() {
           >
             <button
               type="submit"
-              className="bg-white flex items-center gap-2 rounded-full w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
+              className="bg-white flex items-center gap-2 px-5 md:px-0 rounded-full w-full max-w-xs md:w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
             >
               <FcGoogle size={19} /> Sign in with Google
             </button>
           </form>
           <form
-            className="w-full"
+            className="w-full flex justify-center md:justify-start"
             action={async () => {
               "use server";
               await signIn("github");
@@ -57,13 +57,13 @@ export default async function Login() {
           >
             <button
               type="submit"
-              className="bg-white flex items-center gap-2 rounded-full w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
+              className="bg-white flex items-center gap-2 rounded-full w-full max-w-xs md:w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
             >
               <BsGithub size={19} /> Sign in with Github
             </button>
           </form>
         </div>
-        <p className="text-muted-foreground text-[11px] w-[17rem] my-4">
+        <p className="text-muted-foreground text-xs md:text-[11px] w-full max-w-xs md:w-[17rem] my-4 text-center md:text-left">
           By signing up, you agree to the{" "}
           <Link
             className="hover:underline text-blue-400"
@@ -88,7 +88,7 @@ export default async function Login() {
           .
         </p>
       </div>
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-muted-foreground text-sm">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-muted-foreground text-xs md:text-sm text-center w-full">
         @{`2025`} — This is a personal demo project and is not
         affiliated with Twitter / X or its affiliates.
       </div>

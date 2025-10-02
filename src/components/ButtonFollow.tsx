@@ -5,6 +5,7 @@ import { useTransition } from "react";
 import { useUserStore } from "@/zustand/userStore";
 import { BsPersonFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+import { TbLoaderQuarter } from "react-icons/tb";
 
 type ButtonFollowProps = {
   userId: string;
@@ -44,12 +45,27 @@ export default function ButtonFollow({ userId, w }: ButtonFollowProps) {
         type="submit"
         className="flex items-center gap-2 disabled:cursor-not-allowed cursor-pointer w-full px-2 py-1 "
       >
-        <BsPersonFill
-          className={` duration-300 group-hover:text-green-600 group-hover:bg-[#00940f6e] rounded-full ${
-            alreadyFollowed ? "text-green-600" : "text-muted-foreground"
-          }`}
-        />
-        {alreadyFollowed ? "Unfollow" : "Follow"}
+        {isPending ? (
+          <TbLoaderQuarter className="animate-spin" size={24} />
+        ) : alreadyFollowed ? (
+          <>
+            <BsPersonFill
+              className={` duration-300 group-hover:text-green-600 group-hover:bg-[#00940f6e] rounded-full ${
+                alreadyFollowed ? "text-green-600" : "text-muted-foreground"
+              }`}
+            />
+            Unfollow
+          </>
+        ) : (
+          <>
+            <BsPersonFill
+              className={` duration-300 group-hover:text-green-600 group-hover:bg-[#00940f6e] rounded-full ${
+                alreadyFollowed ? "text-green-600" : "text-muted-foreground"
+              }`}
+            />
+            Follow
+          </>
+        )}
       </button>
     </form>
   );

@@ -28,7 +28,7 @@ export default async function LilProfile() {
     <DropdownMenu>
       <DropdownMenuTrigger className="text-start outline-none border-none hidden md:flex w-full">
         <div className="flex items-center justify-between w-full mb-3 duration-300 hover:bg-[#202020] cursor-pointer rounded-full px-3 py-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Image
               className="rounded-full"
               src={user.image || backupImafe}

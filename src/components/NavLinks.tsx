@@ -15,6 +15,8 @@ import Link from "next/link";
 import ButtonAddPostFromNavbar from "./ButtonAddPostFromNavbar";
 import { RiPushpin2Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import SignOutBtn from "./SignOutBtn";
 
 const newsreader = Newsreader({
   variable: "--font-geist-sans",
@@ -137,6 +139,7 @@ export default function NavLinks() {
           <MdPerson /> <span className="hidden lg:flex">Profile</span>
         </span>
       </Link>
+      <SignOutBtn user={user!}/>
       <ButtonAddPostFromNavbar />
     </div>
   );

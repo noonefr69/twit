@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Twit Clone
+
+A modern, full-stack Twitter clone built with Next.js 15, TypeScript, MongoDB, and Tailwind CSS. This project demonstrates scalable architecture, advanced React patterns, and production-ready features for a social media platform.
+
+## Features
+
+- **Authentication:** Secure login with NextAuth.js
+
+- **User Profiles:** Editable profiles, cover images, and avatars
+
+- **Posts:** Create, delete, like, save, and report posts
+
+- **Comments:** Add and delete comments on posts
+
+- **Follow System:** Follow/unfollow users, see followers/following
+
+- **Feed:** Personalized home feed and explore trending posts
+
+- **Notifications:** Real-time updates for likes, comments, and follows
+
+- **Search:** Find users and posts instantly
+
+- **Cloudinary Integration:** Image uploads and optimization
+
+- **State Management:** Zustand for global user state
+
+- **Responsive UI:** Mobile-first, accessible, and fast
+
+- **React Hot Toast:** User feedback for all server actions
+
+- **SEO:** Dynamic metadata for all pages
+
+## Tech Stack
+
+- **Frontend:** Next.js 15 (App Router), React, TypeScript, Tailwind CSS
+
+- **Backend:** Next.js API routes, MongoDB (Mongoose), Cloudinary
+
+- **Auth:** NextAuth.js
+
+- **State:** Zustand
+
+- **Notifications & Toasts:** react-hot-toast
+
+## Project Structure
+
+```
+
+src/
+
+actions/ # Server actions for posts, comments, likes, etc.
+
+app/ # App Router pages and layouts
+
+components/ # Reusable UI and feature components
+
+lib/ # Utility libraries (db, cloudinary, etc.)
+
+models/ # Mongoose models
+
+types/ # TypeScript types
+
+zustand/ # Zustand store
+
+public/ # Static assets
+
+```
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repo:**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+git clone https://github.com/yourusername/twit-clone.git
+
+cd twit-clone
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install dependencies:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm install
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Set up environment variables:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Create a `.env.local` file:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
 
-## Deploy on Vercel
+MONGODB_URI=your_mongodb_connection_string
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+AUTH_SECRET=your_nextauth_secret
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+AUTH_GITHUB_ID=your_github_id
+AUTH_GITHUB_SECRET=your_github_secret
+
+AUTH_GOOGLE_ID=your_google_id
+AUTH_GOOGLE_SECRET=your_google_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+NEXT_PUBLIC_API_BASE_URL=your_domain
+
+```
+
+4.  **Run locally:**
+
+```bash
+
+npm run dev
+
+```
+
+5.  **Deploy:**
+
+- Deploy to Vercel for best results. Set environment variables in the Vercel dashboard.
+
+## Senior Engineering Highlights
+
+- **Type Safety:** Strict TypeScript throughout the stack
+
+- **Server Actions:** Modern Next.js server actions for data mutations
+
+- **Optimized Fetching:** Uses cache strategies and revalidation for performance
+
+- **Error Handling:** User-friendly error boundaries and toast notifications
+
+- **Scalable Structure:** Modular, maintainable codebase for growth
+
+- **Security:** Follows best practices for authentication and data validation
+
+- **Accessibility:** Semantic HTML and accessible UI components
+
+## Screenshots
+
+### Login Page
+
+![Login Page](public/loginPage.png)
+
+### Home Page
+
+![Home Page](public/homePage.png)
+
+---
+
+**Built by a Junior engineer for portfolio and learning purposes.**

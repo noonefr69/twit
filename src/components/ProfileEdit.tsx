@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { UserType } from "@/types/type";
 import { useState, useTransition } from "react";
+import toast from "react-hot-toast";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { TbLoaderQuarter, TbPhotoCheck } from "react-icons/tb";
 
@@ -27,13 +28,15 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
     startTransition(async () => {
       try {
         await handleProfile(formData);
+        toast.success("Profile edited successfully!");
         setOpen(false);
       } catch (err: unknown) {
         if (err instanceof Error) {
           console.log(err.message);
-          //   toast.error(err.message);
+          toast.error(err.message);
         } else {
           console.error("Something went wrong");
+          toast.error("Somthing went wrong!");
         }
       }
     });
@@ -179,7 +182,7 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
               {isPending ? (
                 <TbLoaderQuarter className="animate-spin" size={24} />
               ) : (
-                "Post"
+                "Save"
               )}
             </button>
           </form>

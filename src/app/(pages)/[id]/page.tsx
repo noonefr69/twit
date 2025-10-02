@@ -2,6 +2,7 @@ import ProfileFooter from "@/components/ProfileFooter";
 import ProfileHeader from "@/components/ProfileHeader";
 import { headers } from "next/headers";
 import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -20,7 +21,9 @@ export async function generateMetadata(
 
   return {
     title: post.name,
-    description: post.bio || `Profile page for ${post.name}. View bio, followers, following, and posts.`,
+    description:
+      post.bio ||
+      `Profile page for ${post.name}. View bio, followers, following, and posts.`,
   };
 }
 
@@ -42,6 +45,10 @@ export default async function Page({
     }
   );
   const user = await userRes.json();
+
+  if (!user || user.error) {
+    notFound();
+  }
 
   // All Posts
   const postsRes = await fetch(

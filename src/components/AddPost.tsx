@@ -68,7 +68,7 @@ export default function AddPost() {
           <div className="h-8 w-8 border-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
         </div>
       )}
-      <div className="border-y-[#252525] border-y-2 px-10 py-4 relative">
+      <div className="border-y-[#252525] border-y-2 px-4 md:px-10 py-4 relative">
         <form action={handleChange} className="flex flex-col items-end ">
           <textarea
             ref={textAreaRef}

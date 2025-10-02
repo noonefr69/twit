@@ -57,7 +57,7 @@ export default function ProfileHeader({
 
   return (
     <div>
-      <nav className="flex items-center justify-between md:p-3 py-3 text-white">
+      <nav className="flex items-center justify-between md:p-3 py-3 px-4 text-white">
         <div className="flex items-center">
           <Link href={`/home`}>
             <IoArrowBack size={22} className="mr-4" />
@@ -77,9 +77,10 @@ export default function ProfileHeader({
         )}
       </div>
 
-      <div className="flex items-start justify-between md:p-5 py-5">
-        <div className="flex flex-col text-white relative -top-[90px]">
-          <div className="relative bg-[#252525] rounded-full shadow-sm shadow-[white] w-32 h-32 cursor-pointer">
+      <div className="flex items-start flex-col justify-between md:p-5 px-4 py-5">
+        <div className="flex items-center justify-between w-full relative">
+          <div className="relative h-28 w-28 -top-20">
+            {" "}
             {dynamicUser?.image ? (
               <Dialog>
                 <DialogTrigger asChild>
@@ -115,9 +116,34 @@ export default function ProfileHeader({
               />
             )}
           </div>
+          <div className="relative -top-10">
+            {userItSelf ? (
+              <ProfileEdit userData={dynamicUser} />
+            ) : (
+              <form action={handleChange}>
+                <button
+                  disabled={isPending}
+                  className="text-white disabled:cursor-not-allowed transition-all cursor-pointer text-center flex items-center justify-center rounded-full font-semibold border-2 w-36 duration-300 hover:bg-[#252525] py-1 border-[#ababab]"
+                  type="submit"
+                >
+                  {isPending ? (
+                    <TbLoaderQuarter className="animate-spin" size={24} />
+                  ) : alreadyFollowed ? (
+                    "Unfollow"
+                  ) : (
+                    "Follow"
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+        <div className="text-white relative -top-16">
           <div className="mt-5 space-y-2">
             <h1 className="font-semibold">{dynamicUser?.name}</h1>
-            <pre>{dynamicUser.bio ? dynamicUser.bio : ""}</pre>
+            <pre className="whitespace-normal break-all">
+              {dynamicUser.bio ? dynamicUser.bio : ""}
+            </pre>
             <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <BsCalendar2WeekFill />
               <span>{formatJoined(dynamicUser?.createdAt)}</span>
@@ -138,25 +164,6 @@ export default function ProfileHeader({
             </div>
           </div>
         </div>
-        {userItSelf ? (
-          <ProfileEdit userData={dynamicUser} />
-        ) : (
-          <form action={handleChange}>
-            <button
-              disabled={isPending}
-              className="text-white disabled:cursor-not-allowed transition-all cursor-pointer text-center flex items-center justify-center rounded-full font-semibold border-2 w-36 duration-300 hover:bg-[#252525] py-1 border-[#ababab]"
-              type="submit"
-            >
-              {isPending ? (
-                <TbLoaderQuarter className="animate-spin" size={24} />
-              ) : alreadyFollowed ? (
-                "Unfollow"
-              ) : (
-                "Follow"
-              )}
-            </button>
-          </form>
-        )}
       </div>
     </div>
   );
