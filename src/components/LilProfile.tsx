@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "@/auth";
 import { redirect } from "next/navigation";
+import { IoLogOutOutline } from "react-icons/io5";
 
 export default async function LilProfile() {
   const session = await auth();
@@ -44,10 +45,10 @@ export default async function LilProfile() {
           <RxDotsHorizontal className="text-white lg:flex hidden" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-black relative rounded-xl -top-2 border-[#202020] shadow-sm shadow-[#ffffff59] outline-none w-72 p-0 m-0 ">
+      <DropdownMenuContent className="bg-black relative rounded-xl -top-2 border-[#202020] shadow-sm shadow-[#ffffff59] left-2 outline-none w-fit lg:w-72 p-0 m-0 ">
         <DropdownMenuItem className="w-full focus:bg-transparent p-0 m-0">
           <form
-            className="w-full"
+            className="w-full "
             action={async () => {
               "use server";
               await signOut();
@@ -55,9 +56,10 @@ export default async function LilProfile() {
           >
             <button
               type="submit"
-              className="w-full font-bold text-white text-left break-words whitespace-normal py-3 cursor-pointer duration-300 px-3 my-4 hover:bg-[#202020]"
+              className="w-full flex items-center gap-2 font-bold text-white text-left justify-center lg:justify-start break-words whitespace-normal py-3 cursor-pointer duration-300 px-3 my-4 hover:bg-[#202020]"
             >
-              Log out {user.email}
+              Log out <span className="lg:block hidden">{user.email} </span>
+              <IoLogOutOutline className="lg:hidden  block" />
             </button>
           </form>
         </DropdownMenuItem>

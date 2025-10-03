@@ -101,6 +101,7 @@ export default function NavLinks() {
           <span className="hidden lg:flex">Notifications</span>
         </span>
       </Link> */}
+      <SignOutBtn user={user!} />
       <Link
         className={`text-2xl px-3 py-2 rounded-full flex items-center gap-2 text-white w-fit duration-300 hover:bg-[#202020] `}
         href={`/saved`}
@@ -139,7 +140,6 @@ export default function NavLinks() {
           <MdPerson /> <span className="hidden lg:flex">Profile</span>
         </span>
       </Link>
-      <SignOutBtn user={user!}/>
       <ButtonAddPostFromNavbar />
     </div>
   );
