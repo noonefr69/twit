@@ -53,7 +53,7 @@ export default function ProfileFooterPosts({
                 </Link>
                 <PostDropDown post={post} />
               </div>
-              <pre className="my-7 whitespace-pre-wrap break-all">
+              <pre className="my-7 whitespace-pre-wrap break-words">
                 {post.post}
               </pre>
               {post.image ? (

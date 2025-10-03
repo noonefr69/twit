@@ -41,7 +41,7 @@ export default async function Posts({ posts }: PostsProps) {
               </Link>
               <PostDropDown post={post} />
             </div>
-            <pre className="mt-2 whitespace-pre-wrap break-all">
+            <pre className="mt-2 whitespace-pre-wrap break-words">
               {post.post}
             </pre>
             {post.image ? (

@@ -141,7 +141,7 @@ export default function ProfileHeader({
         <div className="text-white relative -top-16">
           <div className="mt-5 space-y-2">
             <h1 className="font-semibold">{dynamicUser?.name}</h1>
-            <pre className="whitespace-normal break-all">
+            <pre className="whitespace-normal break-words">
               {dynamicUser.bio ? dynamicUser.bio : ""}
             </pre>
             <div className="flex items-center gap-2 text-muted-foreground text-sm">

@@ -20,7 +20,7 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
     : [];
 
   return (
-    <div className="break-all">
+    <div className="">
       {likedPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
           You don&apos;t like any post!
@@ -54,7 +54,7 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
                 </Link>
                 <PostDropDown post={likedPost} />
               </div>
-              <pre className="my-7 whitespace-pre-wrap break-all">
+              <pre className="my-7 whitespace-pre-wrap break-words">
                 {likedPost.post}
               </pre>
               {likedPost.image ? (

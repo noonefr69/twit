@@ -16,7 +16,7 @@ export default async function Saved() {
   });
   const posts = await res.json();
   return (
-    <div>
+    <div className="mb-20">
         <ProfileFooterSaves posts={posts} />
     </div>
   );

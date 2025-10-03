@@ -21,7 +21,7 @@ export default function PostsFollowing({ posts }: PostsProps) {
   });
 
   return (
-    <div className=" ">
+    <div className=" mb-20">
       {postFollowings.length == 0 ? (
         <div className="text-muted-foreground text-center mt-7 text-lg font-semibold">
           Follow others to see their posts.{" "}
@@ -55,7 +55,7 @@ export default function PostsFollowing({ posts }: PostsProps) {
                 </Link>
                 <PostDropDown post={post} />
               </div>
-              <pre className="mt-2 whitespace-pre-wrap break-all">
+              <pre className="mt-2 whitespace-pre-wrap break-words">
                 {post.post}
               </pre>
               {post.image ? (

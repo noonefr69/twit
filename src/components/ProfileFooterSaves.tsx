@@ -20,7 +20,7 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
   });
 
   return (
-    <div className="break-all">
+    <div className="">
       {savedPosts.length == 0 ? (
         <div className="text-muted-foreground font-semibold text-center mt-4">
           You don&apos;t save any post!
@@ -54,7 +54,7 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
                 </Link>
                 <PostDropDown post={savedPost} />
               </div>
-              <pre className="my-7 whitespace-pre-wrap break-all">
+              <pre className="my-7 whitespace-pre-wrap break-words">
                 {savedPost.post}
               </pre>
               {savedPost.image ? (
