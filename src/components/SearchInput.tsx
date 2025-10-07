@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import { format } from "date-fns";
 import { useRef, useState } from "react";
+import { useUserStore } from "@/zustand/userStore";
 
 type SearchInputProps = {
   users: UserType[];
@@ -19,12 +20,15 @@ function formatJoined(dateString: string) {
 export default function SearchInput({ users }: SearchInputProps) {
   const [inputVal, setInputVal] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const { user } = useUserStore();
 
   const filterUsers =
     inputVal.trim() === ""
-      ? users
-      : users.filter((user) =>
-          user.name.toLowerCase().includes(inputVal.toLowerCase())
+      ? users.filter((u) => u._id !== user?._id)
+      : users.filter(
+          (u) =>
+            u.name.toLowerCase().includes(inputVal.toLowerCase()) &&
+            u._id !== user?._id
         );
 
   function handleUserClick() {
@@ -44,29 +48,31 @@ export default function SearchInput({ users }: SearchInputProps) {
         className="pl-10 w-full rounded-full outline-none border-2 focus:border-[#525252] duration-300 border-[#252525] p-2"
       />
       <div className="hidden duration-300 space-y-3 group-focus-within:block absolute top-full min-h-fit left-0 mt-2 w-full rounded-md shadow-md z-40 bg-black border-2 border-[#252525] p-2 max-h-64 overflow-y-auto">
-        {filterUsers.map((user) => (
-          <Link
-            key={user._id}
-            href={user._id}
-            onClick={handleUserClick}
-            className="flex items-center gap-2 duration-300 hover:bg-[#252525] p-1 rounded-md"
-          >
-            <div className="relative bg-[#252525] h-10 w-10 rounded-full">
-              <Image
-                className="rounded-full"
-                src={user.image || "/unknown.png"}
-                alt={user.name}
-                fill
-              />
-            </div>
-            <div className="flex flex-col">
-              <h1 className="font-bold">{user.name}</h1>
-              <h1 className="text-sm text-muted-foreground">
-                {formatJoined(user.createdAt!)}
-              </h1>
-            </div>
-          </Link>
-        ))}
+        {filterUsers
+          .map((user) => (
+            <Link
+              key={user._id}
+              href={user._id}
+              onClick={handleUserClick}
+              className="flex items-center gap-2 duration-300 hover:bg-[#252525] p-1 rounded-md"
+            >
+              <div className="relative bg-[#252525] h-10 w-10 rounded-full">
+                <Image
+                  className="rounded-full"
+                  src={user.image || "/unknown.png"}
+                  alt={user.name}
+                  fill
+                />
+              </div>
+              <div className="flex flex-col">
+                <h1 className="font-bold">{user.name}</h1>
+                <h1 className="text-sm text-muted-foreground">
+                  {formatJoined(user.createdAt!)}
+                </h1>
+              </div>
+            </Link>
+          ))
+          .slice(0, 3)}
         {filterUsers.length === 0 && (
           <p className="text-center text-muted-foreground py-2">
             No users found

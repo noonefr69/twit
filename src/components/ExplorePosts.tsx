@@ -1,0 +1,88 @@
+"use client";
+
+import React, { useState } from "react";
+import { IoIosSearch } from "react-icons/io";
+import { PostTypes } from "@/types/type";
+import PostFooter from "./PostFooter";
+import Image from "next/image";
+import { timeAgo } from "@/utils/timeChanger";
+import PostDropDown from "./PostDropDown";
+import Link from "next/link";
+
+type ExplorePostsProps = {
+  posts: PostTypes[];
+};
+
+export default function ExplorePosts({ posts }: ExplorePostsProps) {
+  const [inputVal, setInputVal] = useState("");
+
+  const searchedPost = posts
+    .filter((post) => post.post.toLowerCase().includes(inputVal.toLowerCase()))
+    .sort((a, b) => b.likes.length - a.likes.length);
+
+  return (
+    <div>
+      <div className="relative w-full mt-4 px-4 mb-2 ">
+        <IoIosSearch className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-400" />
+        <input
+          value={inputVal}
+          onChange={(e) => setInputVal(e.target.value)}
+          type="text"
+          placeholder="Search a post"
+          className="pl-10 w-full rounded-full outline-none border-2 focus:border-[#525252] duration-300 border-[#252525] p-2"
+        />
+      </div>
+      <div className=" ">
+        {searchedPost.map((post: PostTypes) => {
+          return (
+            <div
+              key={post._id}
+              className="py-5 px-4 md:p-5 relative border-b-2 border-b-[#252525]"
+            >
+              <div className="flex items-start justify-between min-w-0">
+                <Link
+                  href={`/${post.user._id}`}
+                  className="flex items-start group"
+                >
+                  <div className="relative h-10 w-10 rounded-full">
+                    <Image
+                      src={post?.user?.image}
+                      alt={post?.user?.image}
+                      fill
+                      className="rounded-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h1 className="font-semibold text-sm mx-2 truncate max-w-[120px] group-hover:underline">
+                    {post?.user?.name}
+                  </h1>
+                  <span className="text-muted-foreground text-sm">
+                    {timeAgo(post?.createdAt)}
+                  </span>
+                </Link>
+                <PostDropDown post={post} />
+              </div>
+              <pre className="mt-2 whitespace-pre-wrap break-words">
+                {post.post}
+              </pre>
+              {post.image ? (
+                <div className="relative h-96 w-full rounded-md mt-4 bg-[#252525]">
+                  <Image
+                    src={post.image}
+                    alt={post.image}
+                    fill
+                    className="rounded-md"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              <PostFooter post={post} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
