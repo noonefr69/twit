@@ -30,6 +30,7 @@ export default async function Posts({ posts }: PostsProps) {
                     alt={post?.user?.image}
                     fill
                     className="rounded-full"
+                    loading="lazy"
                   />
                 </div>
                 <h1 className="font-semibold text-sm mx-2 truncate max-w-[120px] group-hover:underline">
@@ -51,6 +52,7 @@ export default async function Posts({ posts }: PostsProps) {
                   alt={post.image}
                   fill
                   className="rounded-md"
+                  loading="lazy"
                 />
               </div>
             ) : (

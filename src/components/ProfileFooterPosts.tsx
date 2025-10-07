@@ -63,6 +63,7 @@ export default function ProfileFooterPosts({
                     alt={post.image}
                     fill
                     className="rounded-md"
+                    loading="lazy"
                   />
                 </div>
               ) : (

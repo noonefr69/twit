@@ -64,6 +64,7 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
                     alt={likedPost.image}
                     fill
                     className="rounded-md"
+                    loading="lazy"
                   />
                 </div>
               ) : (

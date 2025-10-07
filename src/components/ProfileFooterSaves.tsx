@@ -64,6 +64,7 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
                     alt={savedPost.image}
                     fill
                     className="rounded-md"
+                    loading="lazy"
                   />
                 </div>
               ) : (
