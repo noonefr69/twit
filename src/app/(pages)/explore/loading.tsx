@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ExploreLoading() {
   return (
     <div className="mb-20">

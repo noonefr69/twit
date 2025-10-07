@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function HomeLoading() {
   return (
     <div className="mb-20">

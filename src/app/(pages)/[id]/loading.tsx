@@ -1,16 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { BsCalendar2WeekFill } from "react-icons/bs";
-import { IoArrowBack } from "react-icons/io5";
-
 export default function ProfileLoading() {
   return (
     <div className="animate-pulse">
       <nav className="flex items-center justify-between md:p-3 py-3 px-4 text-white">
         <div className="flex items-center">
           <div>
-            <IoArrowBack size={22} className="mr-4 opacity-55" />
           </div>
           <div className="h-4 w-24 bg-[#252525] rounded" />
         </div>
@@ -31,7 +24,6 @@ export default function ProfileLoading() {
             <div className="h-4 w-32 bg-[#252525] rounded" />
             <div className="h-4 w-48 bg-[#252525] rounded" />
             <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <BsCalendar2WeekFill className="opacity-55"/>
               <div className="h-4 w-16 bg-[#252525] rounded" />
             </div>
             <div className="flex items-center gap-3 text-muted-foreground text-sm">
