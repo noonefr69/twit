@@ -23,6 +23,8 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedSecFile, setSelectedSecFile] = useState<File | null>(null);
+  const [userNameInput, setUserNameInput] = useState(userData.name);
+  const [userBioInput, setUserBioInput] = useState(userData.bio);
 
   function handleChange(formData: FormData) {
     startTransition(async () => {
@@ -138,11 +140,12 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                   Name
                 </label>
                 <span className="group-focus-within:block hidden text-muted-foreground font-semibold">
-                  0 / 50
+                  {userNameInput.length} / 50
                 </span>
               </div>
               <input
-                defaultValue={userData.name}
+                value={userNameInput}
+                onChange={(e) => setUserNameInput(e.target.value)}
                 type="text"
                 required
                 maxLength={50}
@@ -153,7 +156,7 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
               />
             </div>
             <div className="relative group mt-4">
-              <div className="flex items-center justify-between px-3 py-2 text-sm absolute top-0 w-full">
+              <div className="flex items-center bg-black border-[#252525] duration-100 group-focus-within:border-blue-500 border-t-2 border-x-2 rounded-t-md justify-between px-3 py-2 text-sm absolute top-0 w-full">
                 <label
                   htmlFor="userBio"
                   className="group-focus-within:text-blue-500 font-semibold text-muted-foreground top-1"
@@ -161,11 +164,12 @@ export default function ProfileEdit({ userData }: ProfileEditProps) {
                   Bio (optional)
                 </label>
                 <span className="group-focus-within:block hidden text-muted-foreground font-semibold">
-                  0/160
+                  {userBioInput.length} / 160
                 </span>
               </div>
               <textarea
-                defaultValue={userData.bio}
+                value={userBioInput}
+                onChange={(e) => setUserBioInput(e.target.value)}
                 name="userBio"
                 maxLength={160}
                 placeholder="Enter your new bio"
