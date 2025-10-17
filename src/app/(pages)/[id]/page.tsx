@@ -24,6 +24,9 @@ export async function generateMetadata(
     description:
       post.bio ||
       `Profile page for ${post.name}. View bio, followers, following, and posts.`,
+    openGraph: {
+      images: [{ url: post.image }],
+    },
   };
 }
 
