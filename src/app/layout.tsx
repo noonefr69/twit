@@ -3,7 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Twit Clone",
-  description: "A modern Twitter clone app. Share posts, follow users, and explore trending content.",
+  description:
+    "A modern Twitter clone app. Share posts, follow users, and explore trending content.",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
