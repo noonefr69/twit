@@ -30,9 +30,15 @@ export default async function Login() {
       >
         TWIT
       </div>
-      <div className={`w-full md:w-1/2 ${openSans.className} antialiased flex flex-col items-center md:items-start`}>
-        <h1 className="text-white text-4xl md:text-7xl font-bold mb-6 md:mb-10 text-center md:text-left">Happening now</h1>
-        <h3 className="text-white text-2xl md:text-4xl font-bold mb-5 md:mb-7 text-center md:text-left">Join today.</h3>
+      <div
+        className={`w-full md:w-1/2 ${openSans.className} antialiased flex flex-col items-center md:items-start`}
+      >
+        <h1 className="text-white text-4xl md:text-7xl font-bold mb-6 md:mb-10 text-center md:text-left">
+          Happening now
+        </h1>
+        <h3 className="text-white text-2xl md:text-4xl font-bold mb-5 md:mb-7 text-center md:text-left">
+          Join today.
+        </h3>
         <div className="space-y-4 md:space-y-5 flex flex-col items-center md:items-start">
           <form
             className="w-full flex justify-center md:justify-start"
@@ -89,8 +95,8 @@ export default async function Login() {
         </p>
       </div>
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-muted-foreground text-xs md:text-sm text-center w-full">
-        @{`2025`} — This is a personal demo project and is not
-        affiliated with Twitter / X or its affiliates.
+        @{`2026`} — This is a personal demo project and is not affiliated with
+        Twitter / X or its affiliates.
       </div>
     </div>
   );
