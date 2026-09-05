@@ -39,7 +39,11 @@ export default function ProfileFooterLikes({ posts }: PostTypesProps) {
                 >
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
-                      src={likedPost?.user?.image}
+                      src={
+                        likedPost.user.image === ""
+                          ? "/unknown.png"
+                          : likedPost.user.image
+                      }
                       alt={likedPost?.user?.image}
                       fill
                       className="rounded-full"

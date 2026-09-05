@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Search from "@/components/Search";
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
+import GuestWelcomeToast from "@/components/GuestWelcomeToast";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -18,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <main className="bg-black md:h-screen">
+      <Suspense fallback={null}>
+        <GuestWelcomeToast />
+      </Suspense>
       <div className={`mx-auto max-w-[1240px] grid grid-cols-12 gap-4`}>
         <div className="absolute bottom-0 left-0 right-0 md:grid md:col-span-1 z-50 lg:col-span-3 md:relative">
           <Navbar />
@@ -29,7 +34,7 @@ export default function RootLayout({
           <Search />
         </div>
       </div>
-      <Toaster />
+      <Toaster position="bottom-center" />
     </main>
   );
 }
