@@ -39,7 +39,11 @@ export default function ProfileFooterSaves({ posts }: PostTypesProps) {
                 >
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
-                      src={savedPost?.user?.image}
+                      src={
+                        savedPost.user.image === ""
+                          ? "/unknown.png"
+                          : savedPost.user.image
+                      }
                       alt={savedPost?.user?.image}
                       fill
                       className="rounded-full"

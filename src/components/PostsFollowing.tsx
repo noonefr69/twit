@@ -40,7 +40,11 @@ export default function PostsFollowing({ posts }: PostsProps) {
                 >
                   <div className="relative h-10 w-10 rounded-full">
                     <Image
-                      src={post?.user?.image}
+                      src={
+                        post.user.image === ""
+                          ? "/unknown.png"
+                          : post.user.image
+                      }
                       alt={post?.user?.image}
                       fill
                       className="rounded-full"

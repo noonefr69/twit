@@ -3,8 +3,11 @@ import { auth, signIn } from "@/auth";
 import { Newsreader, Open_Sans } from "next/font/google";
 import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { LuUserPlus } from "react-icons/lu";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { handleGuestJoin } from "@/actions/guestSignIn";
+import GuestReturnForm from "@/components/GuestReturnForm";
 // import User from "@/models/user";
 
 const newsreader = Newsreader({
@@ -26,7 +29,7 @@ export default async function Login() {
   return (
     <div className="min-h-screen bg-black flex flex-col md:flex-row items-center justify-center max-w-[1440px] mx-auto px-4 md:px-0">
       <div
-        className={`text-[5rem] md:text-[10rem] font-semibold text-white w-full md:w-1/2 h-[200px] md:h-screen flex items-center justify-center ${newsreader.className} antialiased`}
+        className={`text-[5rem] md:text-[6rem] lg:text-[10rem] font-semibold text-white w-full md:w-1/2 h-[200px] md:h-screen flex items-center justify-center ${newsreader.className} antialiased`}
       >
         TWIT
       </div>
@@ -40,34 +43,57 @@ export default async function Login() {
           Join today.
         </h3>
         <div className="space-y-4 md:space-y-5 flex flex-col items-center md:items-start">
+          <div className="w-full max-w-xs md:w-[17rem] flex flex-col md:flex-row items-center justify-center md:justify-start gap-3">
+            <form
+              className="w-full md:flex-1 min-w-0 flex justify-center md:justify-start"
+              action={async () => {
+                "use server";
+                await signIn("google");
+              }}
+            >
+              <button
+                type="submit"
+                className="bg-white flex items-center gap-2 rounded-full w-full justify-center py-2 px-4 cursor-pointer duration-300 hover:opacity-70 truncate whitespace-nowrap"
+              >
+                <FcGoogle size={19} /> Google
+              </button>
+            </form>
+            <form
+              className="w-full md:flex-1 min-w-0 flex justify-center md:justify-start"
+              action={async () => {
+                "use server";
+                await signIn("github");
+              }}
+            >
+              <button
+                type="submit"
+                className="bg-white flex items-center gap-2 rounded-full w-full justify-center py-2 px-4 cursor-pointer duration-300 hover:opacity-70 truncate whitespace-nowrap"
+              >
+                <BsGithub size={19} /> Github
+              </button>
+            </form>
+          </div>
+
+          <div className="flex items-center gap-2 w-full max-w-xs md:w-[17rem] justify-center py-2">
+            <div className="h-[1px] bg-[#333] flex-1" />
+            <span className="text-[#333] text-sm">or</span>
+            <div className="h-[1px] bg-[#333] flex-1" />
+          </div>
+
           <form
             className="w-full flex justify-center md:justify-start"
-            action={async () => {
-              "use server";
-              await signIn("google");
-            }}
+            action={handleGuestJoin}
           >
             <button
               type="submit"
-              className="bg-white flex items-center gap-2 px-5 md:px-0 rounded-full w-full max-w-xs md:w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
+              className="bg-black text-white border border-[#536471] px-10 flex items-center gap-2 rounded-full w-full max-w-xs md:w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:bg-[#202020]"
             >
-              <FcGoogle size={19} /> Sign in with Google
+              <LuUserPlus size={19} /> <span className="">Continue as</span>{" "}
+              guest
             </button>
           </form>
-          <form
-            className="w-full flex justify-center md:justify-start"
-            action={async () => {
-              "use server";
-              await signIn("github");
-            }}
-          >
-            <button
-              type="submit"
-              className="bg-white flex items-center gap-2 rounded-full w-full max-w-xs md:w-[17rem] justify-center py-2 cursor-pointer duration-300 hover:opacity-70"
-            >
-              <BsGithub size={19} /> Sign in with Github
-            </button>
-          </form>
+
+          <GuestReturnForm />
         </div>
         <p className="text-muted-foreground text-xs md:text-[11px] w-full max-w-xs md:w-[17rem] my-4 text-center md:text-left">
           By signing up, you agree to the{" "}

@@ -41,6 +41,15 @@ const userSchema = new Schema(
         ref: "Post",
       },
     ],
+    isGuest: {
+      type: Boolean,
+      default: false,
+    },
+    guestToken: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
   },
   {
     timestamps: true,

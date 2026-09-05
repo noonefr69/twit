@@ -22,7 +22,7 @@ export default function PostsComments({ post }: PostsCommentsProps) {
     <Dialog>
       {/* Trigger button */}
       <DialogTrigger
-        className="flex items-center gap-1 text-sm text-muted-foreground 
+        className="flex items-center gap-1 text-sm text-muted-foreground
                   duration-300 group cursor-pointer absolute left-1/2 -translate-x-1/2"
       >
         <FaComment className="transition-all duration-300 group-hover:text-gray-200 group-hover:bg-[#8383836b] p-[5px] rounded-full h-6 w-6" />
@@ -51,7 +51,11 @@ export default function PostsComments({ post }: PostsCommentsProps) {
                 >
                   <div className="relative h-8 w-8 rounded-full overflow-hidden">
                     <Image
-                      src={comment.userCom.image}
+                      src={
+                        comment.userCom.image === ""
+                          ? "/unknown.png"
+                          : comment.userCom.image
+                      }
                       alt={comment.userCom.name}
                       fill
                       className="object-cover"
